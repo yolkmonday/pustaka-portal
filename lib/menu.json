@@ -1,0 +1,88 @@
+[
+  {
+    "label": "Dashboard",
+    "icon": "fas fa-home",
+    "link": "/",
+    "subRoute": "",
+    "child": []
+  },
+  {
+    "label": "Transaksi",
+    "icon": "fas fa-chart-bar",
+    "link": "/transaksi",
+    "subRoute": "/transaksi/:id",
+    "child": []
+  },
+  {
+    "label": "Penarikan",
+    "icon": "fas fa-download",
+    "link": "/penarikan",
+    "subRoute": "/penarikan/",
+    "child": []
+  },
+  {
+    "label": "Analisa",
+    "icon": "fas fa-chart-pie",
+    "link": "/analisa",
+    "subRoute": "/analisa/",
+    "child": []
+  },
+  {
+    "label": "Merchant",
+    "icon": "fas fa-store",
+    "link": "/merchant",
+    "subRoute": "/merchant/:id",
+    "child": []
+  },
+  {
+    "label": "Payment",
+    "icon": "fas fa-wallet",
+    "link": "/payment",
+    "subRoute": "/payment/",
+    "child": [
+      {
+        "label": "Payment Channel",
+        "icon": "fas fa-money-check",
+        "link": "/payment/channel",
+        "subRoute": "/payment/channel/form",
+        "child": []
+      },
+      {
+        "label": "Payment Vendor",
+        "icon": "fas fa-server",
+        "link": "/payment/vendor",
+        "subRoute": "/payment/vendor/",
+        "child": []
+      },
+      {
+        "label": "Payment Kategori",
+        "icon": "fas fa-boxes",
+        "link": "/payment/kategori",
+        "subRoute": "/payment/kategori/",
+        "child": []
+      }
+    ]
+  },
+  {
+    "label": "Pengaturan",
+    "icon": "fas fa-tools",
+    "link": "/pengaturan",
+    "subRoute": "/pengaturan/",
+    "child": [
+      {
+        "label": "Hari Libur",
+        "icon": "fas fa-calendar-times",
+        "link": "/pengaturan/hari-libur",
+        "subRoute": "/pengaturan/hari-libur/",
+        "child": []
+      },
+      {
+        "label": "Metode Penarikan",
+        "icon": "fas fa-receipt",
+        "link": "/pengaturan/metode-penarikan",
+        "subRoute": "/pengaturan/metode-penarikan/",
+        "child": []
+      }
+    ]
+  }
+]

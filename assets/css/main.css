@@ -1,0 +1,47 @@
+@import "@vuepic/vue-datepicker/dist/main.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-primary rounded-lg text-white text-sm focus:outline-none
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 border border-primary bg-secondary rounded-lg text-primary text-sm focus:outline-none
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-red-500 text-white rounded-lg text-sm focus:outline-none
+  }
+
+  .form-input {
+    @apply px-4 py-2 border rounded-md focus:outline-none w-full block
+  }
+
+  .tr {
+    @apply border-b text-xs hover:bg-gray-100
+  }
+
+  .td {}
+
+  .grid-4 {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-2
+  }
+
+  .flex-pagin {
+    @apply mt-4 flex justify-center items-center gap-2
+  }
+
+  .text-back {
+    @apply text-lg font-bold mb-6 w-max hover:text-primary cursor-pointer
+  }
+
+  .text-label {
+  @apply text-xs text-gray-600
+  }
+}
+
+
