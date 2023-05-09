@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
+      viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
       script: [{
           src: "https://kit.fontawesome.com/70e13c3477.js"
         },

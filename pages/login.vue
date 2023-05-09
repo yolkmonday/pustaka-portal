@@ -54,6 +54,7 @@
         </div>
       </form>
     </div>
+    <loader-full v-if="auth.loading" />
   </div>
 </template>
 
