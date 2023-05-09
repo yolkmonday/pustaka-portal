@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-[600px] mx-auto border min-h-screen bg-blue-600">
+  <div class="max-w-[600px] mx-auto h-screen bg-blue-600">
     <div class="flex justify-end items-end h-screen">
       <form class="w-full bg-white p-4 rounded-t-lg" @submit.prevent="signIn()">
         <div>
