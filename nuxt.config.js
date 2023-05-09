@@ -7,12 +7,7 @@ export default defineNuxtConfig({
       script: [{
           src: "https://kit.fontawesome.com/70e13c3477.js"
         },
-        // {
-        //   src: '/_nuxt/node_modules/jquery/dist/jquery.js'
-        // },
-        // {
-        //   src: '/_nuxt/node_modules/select2/dist/js/select2.min.js'
-        // }
+
       ]
     },
     pageTransition: {
@@ -41,6 +36,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiURL: process.env.API_URL,
+      apiKey: process.env.API_KEY,
       siteKey: process.env.CAPTCHA_SITE_KEY,
       secretKey: process.env.CAPTCHA_SECRET_KEY
     }
