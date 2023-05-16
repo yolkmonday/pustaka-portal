@@ -88,7 +88,7 @@
           </div>
 
           <button
-            @click.prevent="addWishlist(0, b.biblio.biblio_id, b.biblio)"
+            @click.prevent="addWishlist(0, b.biblio.biblio_id, b)"
             class="absolute bottom-0 right-0 text-red-500 text-xs p-3 flex items-center gap-1"
           >
             <Icon name="mdi:cards-heart" />

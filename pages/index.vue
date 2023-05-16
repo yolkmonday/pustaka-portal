@@ -56,7 +56,7 @@
 
 <script setup>
 import { useAuth } from "@/store/auth";
-import { usePopup } from "../store/popup";
+import { usePopup } from "@/store/popup";
 definePageMeta({
   middleware: "auth",
 });
