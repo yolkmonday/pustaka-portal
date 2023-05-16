@@ -10,7 +10,7 @@
       >
         <div class="text-center">
           <Icon name="solar:home-smile-bold" size="28" />
-          <span class="text-[10px] block w-full">Beranda</span>
+          <span class="text-[8px] block w-full">Beranda</span>
         </div>
       </div>
       <div
@@ -20,16 +20,23 @@
       >
         <div class="text-center">
           <Icon name="solar:folder-favourite-bookmark-bold" size="28" />
-          <span class="text-[10px] block w-full">Riwayat</span>
+          <span class="text-[8px] block w-full">Riwayat</span>
         </div>
       </div>
-      <div>
-        <div
-          class="bg-blue-600 h-14 -mt-8 mx-auto w-14 rounded-full flex items-center justify-center text-white"
-        >
-          <icon name="solar:code-scan-broken" size="24" />
+      <div
+        class="flex justify-center items-center"
+        @click.prevent="router.push('/riwayat')"
+      >
+        <div class="text-center">
+          <div
+            class="w-12 h-12 -mt-6 rounded-full bg-blue-600 text-white flex items-center justify-center"
+          >
+            <Icon name="solar:code-scan-broken" size="18" />
+          </div>
+          <span class="text-[8px] block w-full mt-1">Scan</span>
         </div>
       </div>
+
       <div
         class="flex justify-center items-center"
         @click.prevent="router.push('/favorit')"
@@ -37,7 +44,7 @@
       >
         <div class="text-center">
           <Icon name="solar:chat-round-like-bold" size="28" />
-          <span class="text-[10px] block w-full">Favorit</span>
+          <span class="text-[8px] block w-full">Favorit</span>
         </div>
       </div>
 
@@ -48,7 +55,7 @@
       >
         <div class="text-center">
           <Icon name="solar:user-circle-bold" size="28" />
-          <span class="text-[10px] block w-full">Profil</span>
+          <span class="text-[8px] block w-full">Profil</span>
         </div>
       </div>
     </div>
