@@ -18,6 +18,15 @@ const axiosPost = (url, payload) => {
     },
     timeout: 120000
   });
+  instance.interceptors.response.use(
+    response => {
+      return response
+    }, error => {
+      if (error.response.status === 401) {
+        window.location = '/logout'
+      }
+    }
+  )
   return instance.post(url, payload)
 }
 
@@ -37,6 +46,15 @@ const axiosGet = (url) => {
     },
     timeout: 120000
   });
+  instance.interceptors.response.use(
+    response => {
+      return response
+    }, error => {
+      if (error.response.status === 401) {
+        window.location = '/logout'
+      }
+    }
+  )
   return instance.get(url)
 }
 
