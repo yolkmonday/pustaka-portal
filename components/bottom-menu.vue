@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-4 border-t absolute bottom-0 left-0 w-full py-2">
+  <div class="grid grid-cols-4 fixed border-t bottom-0 left-0 w-full py-2">
     <div
       class="flex justify-center items-center"
       @click.prevent="router.push('/')"
