@@ -1,7 +1,10 @@
 <template>
   <div class="max-w-[600px] mx-auto h-screen bg-blue-600">
     <div class="flex justify-end items-end h-screen">
-      <form class="w-full bg-white p-4 rounded-t-lg" @submit.prevent="signIn()">
+      <form
+        class="w-full bg-white p-4 rounded-t-lg"
+        @submit.prevent="loginAct()"
+      >
         <div>
           <div class="h-10"></div>
         </div>
@@ -59,18 +62,69 @@
 </template>
 
 <script setup>
-import { useAuth } from "../store/auth";
-
+import { useAuth } from "@/store/auth";
+import axios from "axios";
+import { reactive } from "vue";
+import { useReCaptcha } from "vue-recaptcha-v3";
+const { $toast } = useNuxtApp();
 const auth = useAuth();
 
-const user = reactive({
-  email: "",
-  password: "",
+definePageMeta({
+  layout: "no-auth",
 });
 
-const signIn = () => {
-  auth.signIn(user);
-  if (auth.data.success) {
+useHead({
+  title: "Login - Mainlibapp",
+});
+
+const recaptchaInstance = useReCaptcha();
+
+const recaptcha = async () => {
+  // optional you can await for the reCaptcha load
+  await recaptchaInstance?.recaptchaLoaded();
+  // get the token, a custom action could be added as argument to the method
+  const token = await recaptchaInstance?.executeRecaptcha("yourActionHere");
+  return token;
+};
+
+const user = {
+  email: "",
+  password: "",
+};
+
+const response = reactive({
+  error: false,
+  loading: false,
+  message: "",
+});
+
+const loginAct = async () => {
+  try {
+    localStorage.removeItem("error");
+    response.loading = true;
+    response.error = false;
+    const token = await recaptcha();
+
+    if (token) {
+      const res = await axios.post("/api/login", { ...user, token });
+      response.loading = false;
+      if (res.data.status) {
+        auth.setLogin(true);
+        auth.setData(res.data.data);
+        auth.setToken(res.data.data.jwt.token);
+        window.location = "/";
+      } else {
+        response.error = true;
+        response.message = res.data.error_msg;
+      }
+    } else {
+      response.loading = false;
+      $toast.error("Gagal mendapatkan token !");
+    }
+  } catch (error) {
+    response.loading = false;
+    console.log(error);
+    $toast.error(error);
   }
 };
 </script>

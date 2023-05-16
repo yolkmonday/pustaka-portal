@@ -1,8 +1,8 @@
 <template>
-  <div class="max-w-[1200px] mx-auto">
+  <div class="max-w-[1200px] mx-auto p-3">
     <!-- <div>{{ book.data.hits }}</div> -->
     <form
-      @submit.prevent="book.getData(payload.q, 10, 1)"
+      @submit.prevent="book.getData(payload.c, payload.q, 10, 1)"
       class="flex w-full gap-3 py-8"
     >
       <input
@@ -11,6 +11,12 @@
         placeholder="Cari buku, pengarang"
         class="w-full p-2 rounded-md border"
       />
+      <select @change.prevent="changeColl" class="p-2 rounded-md border">
+        <option value="" selected disabled>Pilih Koleksi</option>
+        <option value="biblio">Buku</option>
+        <option value="kil">Karya Ilmiah</option>
+      </select>
+
       <button type="submit" class="w-20 bg-blue-500 text-white rounded-lg">
         Cari
       </button>
@@ -20,7 +26,7 @@
       <loader />
     </div>
 
-    <div v-if="!book.loading" class="grid grid-cols-4 gap-3">
+    <div v-if="!book.loading" class="grid grid-cols-2 md:grid-cols-4 gap-3">
       <div
         v-for="(b, i) in book.data.hits"
         :key="i"
@@ -33,10 +39,15 @@
           {{ b.author.author_name }}
         </span>
 
-        <!-- {{ b.item.length }} -->
-
-        <div v-for="(x, y) in b.item">{{ x }}</div>
+        <!-- <div v-for="(x, y) in b.item">{{ x }}</div> -->
       </div>
+    </div>
+
+    <div
+      v-if="!book.loading && !book.data.hits.length"
+      class="flex justify-center items-center h-40"
+    >
+      Data tidak ditemukan
     </div>
   </div>
 </template>
@@ -47,12 +58,15 @@ import _ from "lodash";
 const route = useRoute();
 const book = useBook();
 
-console.log(_);
-
 const payload = reactive({
+  c: "",
   q: "",
   limit: 10,
   page: 1,
 });
-book.getData(payload.q, payload.limit, payload.page);
+
+const changeColl = (val) => {
+  payload.c = val.target.value;
+};
+book.getData(payload.c, payload.q, payload.limit, payload.page);
 </script>

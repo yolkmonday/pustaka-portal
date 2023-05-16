@@ -16,10 +16,10 @@ export const useBook = defineStore('book', {
     }),
 
     actions: {
-        async getData(query, limit, page) {
+        async getData(collection, query, limit, page) {
             try {
                 this.loading = true
-                const res = await axiosGet(`/search?q=${query}&limit=${limit}&page=${page}`)
+                const res = await axiosGet(`/search?c=${collection}&q=${query}&limit=${limit}&page=${page}`)
                 this.loading = false
                 console.log(res);
                 if (res.data.success) {

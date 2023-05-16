@@ -1,41 +1,57 @@
 import {
   defineStore
 } from 'pinia'
-
-import {
-  axiosGet,
-  axiosPost
-} from '../../composables/useAxios'
-
+import axios from 'axios'
 export const useAuth = defineStore('auth', {
   // a function that returns a fresh state
   state: () => ({
-    data: [],
+    token: '',
+    data: {},
     loading: false,
     error: '',
-    message: ''
+    isLogin: false
   }),
 
   actions: {
-    async signIn({
-      email,
-      password
-    }) {
-      try {
-        this.loading = true
-        const res = await axiosPost(`/auth/client/login`, {
-          email,
-          password
-        })
-        this.loading = false
+    // async loginAct(payload) {
+    //   try {
+    //     this.loading = true
+    //     this.error = ''
+    //     const res = await axios.post("/api/login", payload)
+    //     if (res.data.status) {
+    //       this.isLogin = true
+    //       this.token = res.data.data.jwt.token
+    //       this.data = res.data.data.admin
+    //       setTimeout(() => {
+    //         this.loading = false
+    //         window.location = '/'
+    //       }, 500);
+    //     } else {
+    //       this.loading = false
+    //       this.error = res.data.error_msg
+    //     }
+    //   } catch (error) {
+    //     this.loading = false
+    //     this.error = error
 
-        this.data = res.data
-
-      } catch (error) {
-        this.loading = false
-        this.error = error
-        return error
-      }
+    //   }
+    // },
+    setToken(data) {
+      this.token = data
+    },
+    setData(data) {
+      this.data = data
+    },
+    setLogin(data) {
+      this.isLogin = data
+    },
+    logout() {
+      this.isLogin = false
+      this.data = {}
+      this.token = {}
+      useCookie("isLogin").value = null;
+      useCookie("_tpa").value = null;
+      window.location = "/login";
     }
   },
 })
