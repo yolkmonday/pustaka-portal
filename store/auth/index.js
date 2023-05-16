@@ -9,7 +9,8 @@ export const useAuth = defineStore('auth', {
     data: {},
     loading: false,
     error: '',
-    isLogin: false
+    isLogin: false,
+    me: {}
   }),
 
   actions: {
@@ -52,6 +53,23 @@ export const useAuth = defineStore('auth', {
       useCookie("isLogin").value = null;
       useCookie("_tpa").value = null;
       window.location = "/login";
+    },
+    async getMe() {
+      try {
+        this.loading = true
+        const res = await axiosGet(`/v1/me`)
+        this.loading = false
+
+        if (res.data.success) {
+          this.me = res.data.data
+        } else {
+          this.me = {}
+          this.error = res.data.message
+        }
+      } catch (error) {
+        this.loading = false
+        this.error = error
+      }
     }
   },
 })

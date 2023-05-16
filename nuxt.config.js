@@ -8,6 +8,20 @@ export default defineNuxtConfig({
           src: "https://kit.fontawesome.com/70e13c3477.js"
         },
 
+      ],
+      link: [{
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap"
+        }, {
+          rel: "preconnect",
+          crossorigin: true,
+          href: "https://fonts.googleapis.com"
+        },
+        {
+          rel: "preconnect",
+          crossorigin: true,
+          href: "https://fonts.gstatic.com"
+        }
       ]
     },
     pageTransition: {

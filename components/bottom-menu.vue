@@ -1,5 +1,7 @@
 <template>
-  <div class="grid grid-cols-4 fixed border-t bottom-0 left-0 w-full py-2">
+  <div
+    class="grid bg-white shadow grid-cols-4 fixed border-t bottom-0 left-0 w-full py-2"
+  >
     <div
       class="flex justify-center items-center"
       @click.prevent="router.push('/')"
@@ -12,16 +14,6 @@
     </div>
     <div
       class="flex justify-center items-center"
-      @click.prevent="router.push('/favorit')"
-      :class="includeRoute === '/favorit' ? 'text-blue-500' : 'text-gray-500'"
-    >
-      <div class="text-center">
-        <Icon name="solar:chat-round-like-bold" size="28" />
-        <span class="text-[10px] block w-full">Favorit</span>
-      </div>
-    </div>
-    <div
-      class="flex justify-center items-center"
       @click.prevent="router.push('/riwayat')"
       :class="includeRoute === '/riwayat' ? 'text-blue-500' : 'text-gray-500'"
     >
@@ -30,6 +22,17 @@
         <span class="text-[10px] block w-full">Riwayat</span>
       </div>
     </div>
+    <div
+      class="flex justify-center items-center"
+      @click.prevent="router.push('/favorit')"
+      :class="includeRoute === '/favorit' ? 'text-blue-500' : 'text-gray-500'"
+    >
+      <div class="text-center">
+        <Icon name="solar:chat-round-like-bold" size="28" />
+        <span class="text-[10px] block w-full">Favorit</span>
+      </div>
+    </div>
+
     <div
       class="flex justify-center items-center"
       @click.prevent="router.push('/profil')"

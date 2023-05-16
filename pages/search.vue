@@ -1,54 +1,115 @@
 <template>
-  <div class="max-w-[1200px] mx-auto p-3">
-    <!-- <div>{{ book.data.hits }}</div> -->
-    <form
-      @submit.prevent="book.getData(payload.c, payload.q, 10, 1)"
-      class="flex w-full gap-3 py-8"
-    >
-      <input
-        type="text"
-        v-model="payload.q"
-        placeholder="Cari buku, pengarang"
-        class="w-full p-2 rounded-md border"
-      />
-      <select @change.prevent="changeColl" class="p-2 rounded-md border">
-        <option value="" selected disabled>Pilih Koleksi</option>
-        <option value="biblio">Buku</option>
-        <option value="kil">Karya Ilmiah</option>
-      </select>
+  <div class="max-w-[600px] min-h-screen mx-auto relative">
+    <div class="px-3">
+      <!-- <div>{{ book.data.hits }}</div> -->
+      <div class="py-2">
+        <form
+          class="w-full flex gap-2"
+          @submit.prevent="book.getData(payload.c, payload.q, 10, 1)"
+        >
+          <input
+            type="text"
+            v-model="payload.q"
+            placeholder="Cari koleksi ..."
+            class="rounded-lg h-10 w-full px-2 outline-none border-2 focus:border-blue-600"
+          />
+          <button
+            type="submit"
+            class="rounded-lg bg-blue-600 h-10 border-2 border-blue-600 text-white w-32"
+          >
+            <Icon name="ic:round-search" size="20" />
 
-      <button type="submit" class="w-20 bg-blue-500 text-white rounded-lg">
-        Cari
-      </button>
-    </form>
+            Cari
+          </button>
+        </form>
+      </div>
+      <div class="grid grid-cols-2 pb-3">
+        <div
+          class="text-xs font-bold text-center py-2 border-b-2"
+          :class="
+            payload.c !== 'kil'
+              ? 'text-blue-600 border-blue-600'
+              : 'text-gray-400'
+          "
+          @click.prevent="
+            (payload.c = 'biblio'), book.getData(payload.c, payload.q, 10, 1)
+          "
+        >
+          Buku
+        </div>
+        <div
+          class="text-xs font-bold text-center py-2 border-b-2"
+          :class="
+            payload.c === 'kil'
+              ? 'text-blue-600 border-blue-600'
+              : 'text-gray-400'
+          "
+          @click.prevent="
+            (payload.c = 'kil'), book.getData(payload.c, payload.q, 10, 1)
+          "
+        >
+          Karya Ilmiah
+        </div>
+      </div>
 
-    <div v-if="book.loading">
-      <loader />
-    </div>
+      <div v-if="book.loading">
+        <loader />
+      </div>
 
-    <div v-if="!book.loading" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div v-if="!book.loading" class="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div
+          v-for="(b, i) in book.data.hits"
+          :key="i"
+          @click.prevent="selectedBook = b"
+          class="border rounded-lg cursor-pointer p-3 flex gap-2 relative"
+        >
+          <div class="w-4/12">
+            <p
+              class="h-28 capitalize text-blue-600 rounded-lg w-20 break-all bg-blue-50 text-[7px] flex items-center text-center p-4"
+            >
+              {{ b.biblio.title.slice(0, 50) }}...
+            </p>
+          </div>
+          <div class="w-full">
+            <div class="flex gap-2">
+              <div class="text-[12px] text-gray-500 flex items-center gap-1">
+                <Icon name="solar:user-circle-bold" />
+                <span>
+                  {{ b.author.author_name }}
+                </span>
+              </div>
+              <div class="text-[12px] text-gray-500 flex items-center gap-1">
+                <Icon name="solar:book-bold" />
+                <span> {{ b.item.length }} Koleksi </span>
+              </div>
+            </div>
+
+            <p class="font-bold capitalize block mt-1 text-sm">
+              {{ b.biblio.title }}
+            </p>
+          </div>
+
+          <div
+            class="absolute bottom-0 right-0 text-red-500 text-xs p-3 flex items-center gap-1"
+          >
+            <Icon name="mdi:cards-heart" />
+            Favoritkan
+          </div>
+
+          <!-- <div v-for="(x, y) in b.item">{{ x }}</div> -->
+        </div>
+      </div>
+
       <div
-        v-for="(b, i) in book.data.hits"
-        :key="i"
-        class="border rounded-lg p-4"
+        v-if="!book.loading && !book.data.hits.length"
+        class="flex justify-center items-center h-40"
       >
-        <span class="font-bold block">
-          {{ b.biblio.title }}
-        </span>
-        <span class="text-sm text-gray-500 block">
-          {{ b.author.author_name }}
-        </span>
-
-        <!-- <div v-for="(x, y) in b.item">{{ x }}</div> -->
+        Data tidak ditemukan
       </div>
     </div>
-
-    <div
-      v-if="!book.loading && !book.data.hits.length"
-      class="flex justify-center items-center h-40"
-    >
-      Data tidak ditemukan
-    </div>
+    <book-detail :biblio="selectedBook" />
+    <div class="h-20"></div>
+    <bottom-menu />
   </div>
 </template>
 
@@ -65,8 +126,10 @@ const payload = reactive({
   page: 1,
 });
 
-const changeColl = (val) => {
-  payload.c = val.target.value;
-};
+const selectedBook = ref("");
+
+// const changeColl = (val) => {
+//   payload.c = val.target.value;
+// };
 book.getData(payload.c, payload.q, payload.limit, payload.page);
 </script>

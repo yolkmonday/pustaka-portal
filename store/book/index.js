@@ -21,7 +21,7 @@ export const useBook = defineStore('book', {
                 this.loading = true
                 const res = await axiosGet(`/search?c=${collection}&q=${query}&limit=${limit}&page=${page}`)
                 this.loading = false
-                console.log(res);
+
                 if (res.data.success) {
                     this.data = res.data.data
                 } else {

@@ -21,9 +21,13 @@
         </div>
       </div>
       <div class="py-2">
-        <form class="w-full flex gap-2">
+        <form
+          class="w-full flex gap-2"
+          @submit.prevent="router.push('/search?q=' + search)"
+        >
           <input
             type="text"
+            v-model="search"
             placeholder="Cari koleksi ..."
             class="rounded-lg h-10 w-full px-2 outline-none border-2 focus:border-blue-600"
           />
@@ -31,9 +35,18 @@
             type="submit"
             class="rounded-lg bg-blue-600 h-10 border-2 border-blue-600 text-white w-32"
           >
+            <Icon name="ic:round-search" size="20" />
             Cari
           </button>
         </form>
+      </div>
+
+      <div
+        v-if="auth.me.is_verified"
+        class="flex gap-2 my-2 items-center rounded-lg bg-red-100 text-red-600 p-2"
+      >
+        <Icon name="clarity:times-circle-solid" size="14" />
+        <span class="text-xs">Akun belum di verifikasi</span>
       </div>
       <div class="bg-blue-600 p-2 rounded-lg"></div>
     </div>
@@ -46,7 +59,9 @@ import { useAuth } from "@/store/auth";
 definePageMeta({
   middleware: "auth",
 });
+const router = useRouter();
 const auth = useAuth();
+const search = reactive("");
 
-// const user =
+auth.getMe();
 </script>

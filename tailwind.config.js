@@ -9,6 +9,9 @@ module.exports = {
     "./app.vue",
   ],
   theme: {
+    fontFamily: {
+      sans: 'Manrope'
+    },
     extend: {
       colors: {
         'primary': "#2F4F4F",
