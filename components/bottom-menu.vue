@@ -12,12 +12,12 @@
     </div>
     <div
       class="flex justify-center items-center"
-      @click.prevent="router.push('/koleksi')"
-      :class="includeRoute === '/koleksi' ? 'text-blue-500' : 'text-gray-500'"
+      @click.prevent="router.push('/favorit')"
+      :class="includeRoute === '/favorit' ? 'text-blue-500' : 'text-gray-500'"
     >
       <div class="text-center">
-        <Icon name="solar:bookmark-opened-bold" size="28" />
-        <span class="text-[10px] block w-full">Koleksi</span>
+        <Icon name="solar:chat-round-like-bold" size="28" />
+        <span class="text-[10px] block w-full">Favorit</span>
       </div>
     </div>
     <div
