@@ -3,7 +3,8 @@ import {
 } from 'pinia'
 
 import {
-    axiosGet
+    axiosGet,
+    axiosPost
 } from '../../composables/useAxios'
 
 export const useBook = defineStore('book', {
@@ -12,7 +13,11 @@ export const useBook = defineStore('book', {
         data: [],
         loading: false,
         error: '',
-        message: ''
+        message: '',
+        detail: {},
+        response: {},
+        loadingWishlist: false,
+
     }),
 
     actions: {
@@ -32,6 +37,25 @@ export const useBook = defineStore('book', {
                 this.loading = false
                 this.error = error
             }
-        }
+        },
+        bookDetail(data) {
+            this.detail = data
+        },
+        async addToWishlist(wishlist_id, biblio_id, data) {
+            try {
+                this.loadingWishlist = true
+                const res = await axiosPost('/v1/wishlist', {
+                    wishlist_id,
+                    biblio_id,
+                    data: JSON.stringify(data)
+                })
+                this.loadingWishlist = false
+                this.response = res
+            } catch (error) {
+                this.loadingWishlist = false
+                this.response = error.response
+            }
+        },
+
     },
 })

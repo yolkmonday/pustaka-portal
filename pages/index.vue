@@ -56,12 +56,14 @@
 
 <script setup>
 import { useAuth } from "@/store/auth";
+import { usePopup } from "../store/popup";
 definePageMeta({
   middleware: "auth",
 });
 const router = useRouter();
 const auth = useAuth();
 const search = reactive("");
-
+const popup = usePopup();
+popup.setPopup("Selamat Datang !", false);
 auth.getMe();
 </script>
