@@ -27,7 +27,7 @@
 
 <script setup>
 import { VueBottomSheet } from "@webzlodimir/vue-bottom-sheet";
-import "@webzlodimir/vue-bottom-sheet/dist/style.css";
+
 import { ref } from "vue";
 import { usePopup } from "@/store/popup";
 

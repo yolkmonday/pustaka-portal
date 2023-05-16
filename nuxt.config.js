@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     '~/assets/css/select2.css',
     '~/assets/css/vue-json.css',
     '~/assets/css/final-modal.css',
-
+    '~/assets/css/bottom-sheet.css',
   ],
   postcss: {
     plugins: {
