@@ -78,11 +78,11 @@ export default defineNuxtConfig({
     ]
   },
   pwa: {
-    workbox: {
-      enabled: true
-    },
-    icon: {
-      /* icon options */
-    }
+    // workbox: {
+    //   enabled: true
+    // },
+    // icon: {
+    //   /* icon options */
+    // }
   }
 })
