@@ -12,4 +12,8 @@
 
 <script setup>
 import { StreamBarcodeReader } from "vue-barcode-reader";
+
+const onDecode = (val) => {
+  alert(val);
+};
 </script>
