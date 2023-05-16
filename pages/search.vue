@@ -107,7 +107,6 @@
       </div>
     </div>
     <book-detail
-      v-show="selectedBook.biblio.id"
       :biblio="selectedBook"
       @closed="selectedBook = { biblio: {} }"
     />

@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-[600px] min-h-screen mx-auto relative">
     <div
-      class="px-3 pt-2 font-bold text-lg flex items-center gap-1 text-gray-600 text-red-500"
+      class="px-3 pt-2 font-bold text-lg flex items-center gap-1 text-red-500"
     >
       <Icon name="solar:chat-round-like-bold" size="28" />Favorit
     </div>
