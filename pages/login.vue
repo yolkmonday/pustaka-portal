@@ -39,6 +39,7 @@
           v-if="!auth.data.success && auth.data.message"
           :message="auth.data.message"
         />
+        <error-span v-if="response.error" :message="response.message" />
 
         <div>
           <button
@@ -57,7 +58,7 @@
         </div>
       </form>
     </div>
-    <loader-full v-if="auth.loading" />
+    <loader-full v-if="response.loading" />
   </div>
 </template>
 
@@ -108,14 +109,15 @@ const loginAct = async () => {
     if (token) {
       const res = await axios.post("/api/login", { ...user, token });
       response.loading = false;
-      if (res.data.status) {
+      console.log(res);
+      if (res.data.success) {
         auth.setLogin(true);
         auth.setData(res.data.data);
-        auth.setToken(res.data.data.jwt.token);
+        auth.setToken(res.data.data.token);
         window.location = "/";
       } else {
         response.error = true;
-        response.message = res.data.error_msg;
+        response.message = res.data.message;
       }
     } else {
       response.loading = false;
