@@ -1,10 +1,9 @@
 <template>
   <ClientOnly>
     <vue-bottom-sheet ref="dbook">
-      <h1>Lorem Ipsum</h1>
-      {{ pr }}
-      <h2>What is Lorem Ipsum?</h2>
-      <p><strong>Lorem Ipsum</strong> is simply dummy text</p>
+      <div class="p-3">
+        {{ props.biblio. }}
+      </div>
     </vue-bottom-sheet>
   </ClientOnly>
 </template>
@@ -19,6 +18,6 @@ const props = defineProps({
 const dbook = ref(null);
 
 watch(props, (a, b) => {
-  console.log(a);
+  dbook.value.open();
 });
 </script>

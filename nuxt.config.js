@@ -45,7 +45,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@pinia/nuxt', 'nuxt-icon'],
+  modules: ['@pinia/nuxt', 'nuxt-icon', '@kevinmarrec/nuxt-pwa'],
 
   runtimeConfig: {
     public: {
@@ -74,5 +74,13 @@ export default defineNuxtConfig({
       // ... or scan all modules within given directory
       'composables/**'
     ]
+  },
+  pwa: {
+    workbox: {
+      enabled: true
+    },
+    icon: {
+      /* icon options */
+    }
   }
 })
