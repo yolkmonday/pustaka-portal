@@ -1263,6 +1263,13 @@
   dependencies:
     vue-demi "*"
 
+"@webzlodimir/vue-bottom-sheet@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@webzlodimir/vue-bottom-sheet/-/vue-bottom-sheet-2.0.2.tgz#2b022886ed28dbc94ba39a0a34995bde6321b2aa"
+  integrity sha512-3wYdjNJWSSq6guxXo8uhD1tOvPNL4s+3zoZS3u4SHduFHg+qMEDBErx//HH9So8qikwHLYu8Qwa6nhZ+1euYdQ==
+  dependencies:
+    hammerjs "^2.0.8"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz"
@@ -2699,6 +2706,11 @@ h3@^1.5.0, h3@^1.6.0:
     radix3 "^1.0.0"
     ufo "^1.1.1"
     uncrypto "^0.1.2"
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha512-tSQXBXS/MWQOn/RKckawJ61vvsDpCom87JgxiYdGwHdOa0ht0vzUWDlfioofFCRU0L+6NGDt6XzbgoJvZkMeRQ==
 
 has-flag@^3.0.0:
   version "3.0.0"
