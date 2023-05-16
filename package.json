@@ -27,6 +27,7 @@
     "md5": "^2.3.0",
     "moment": "^2.29.4",
     "nuxt3-select2": "^0.1.29",
+    "vue-barcode-reader": "^1.0.3",
     "vue-cal": "^4.8.1",
     "vue-final-modal": "^4.2.0",
     "vue-json-excel3": "^0.0.6",

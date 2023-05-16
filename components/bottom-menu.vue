@@ -25,7 +25,7 @@
       </div>
       <div
         class="flex justify-center items-center"
-        @click.prevent="router.push('/riwayat')"
+        @click.prevent="router.push('/scan')"
       >
         <div class="text-center">
           <div
