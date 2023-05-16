@@ -4,11 +4,13 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
-      script: [{
-          src: "https://kit.fontawesome.com/70e13c3477.js"
-        },
-
-      ],
+      meta: [{
+        name: 'google',
+        content: 'notranslate'
+      }, {
+        name: 'format-detection',
+        content: 'telephone=no'
+      }, ],
       link: [{
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap"
