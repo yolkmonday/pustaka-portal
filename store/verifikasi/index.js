@@ -22,12 +22,7 @@ export const useVerifikasi = defineStore('verifikasi', {
                 this.loading = true
                 const res = await axiosGet(`/v1/send-otp`)
                 this.loading = false
-                if (res.data.success) {
-                    return res.data
-                } else {
-                    this.data = []
-                    this.error = res.data.message
-                }
+                return res.data
             } catch (error) {
                 this.loading = false
                 this.error = error

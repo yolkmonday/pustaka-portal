@@ -11,7 +11,7 @@
         {{ useHp(auth.me.nomor_hp) }}
       </span>
       <button
-        @click.prevent="verifikasi.sendOTP()"
+        @click.prevent="sendOtp()"
         class="text-blue-600 underline text-sm font-bold"
       >
         Kirim Sekarang
@@ -82,7 +82,7 @@ const handleOnChange = (value) => {
 
 auth.getMe();
 const verif = () => {
-  verifikasi.verifOTP(Otp).then((x) => {
+  verifikasi.verifOTP(Otp.value).then((x) => {
     if (x.success) {
       popup.setPopup(x.message, false);
       setTimeout(() => {
@@ -91,6 +91,12 @@ const verif = () => {
     } else {
       popup.setPopup(x.message, true);
     }
+  });
+};
+
+const sendOtp = () => {
+  verifikasi.sendOTP().then((s) => {
+    console.log(s);
   });
 };
 </script>
