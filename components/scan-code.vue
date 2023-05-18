@@ -12,7 +12,10 @@
 
 <script setup>
 import { StreamBarcodeReader } from "vue-barcode-reader";
-
+import { useSiklus } from "@/store/siklus";
+import { usePopup } from "@/store/popup";
+const siklus = useSiklus();
+const popup = usePopup();
 const onDecode = (val) => {
   alert(val);
   if (val.includes("siklus")) {
@@ -22,7 +25,12 @@ const onDecode = (val) => {
   }
 };
 
-const masukSiklus = (code) => {};
+const masukSiklus = (code) => {
+  const t = code.split(":", 2);
+  siklus.masuk(t[1]).then((x) => {
+    popup.setPopup(x.message, !x.success);
+  });
+};
 
 const scanBuku = (code) => {};
 </script>

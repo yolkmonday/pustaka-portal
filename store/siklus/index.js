@@ -31,5 +31,18 @@ export const useSiklus = defineStore('siklus', {
                 this.error = error
             }
         },
+        async masuk(code) {
+            try {
+                this.loading = true
+                const res = await axiosPost(`/v1/siklus/validasi`, {
+                    text: code
+                })
+                this.loading = false
+                return res.data
+            } catch (error) {
+                this.loading = false
+                this.error = error
+            }
+        },
     },
 })
