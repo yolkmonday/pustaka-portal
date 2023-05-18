@@ -1,13 +1,12 @@
 <template>
   <div class="max-w-[600px] min-h-screen mx-auto relative">
     <div class="px-3">
-      <div class="mt-2 flex justify-between items-center">
-        <div class="text-lg">
-          Halo,
-          <span class="text-blue-600">
+      <div class="my-4 flex justify-between items-center">
+        <div class="text-lg flex items-center">
+          <Icon name="solar:user-circle-bold" size="24" />
+          <span class="text-blue-600 font-bold">
             {{ auth.data.nama }}
           </span>
-          !
         </div>
         <div>
           <div class="relative">
@@ -48,7 +47,32 @@
         <Icon name="clarity:times-circle-solid" size="14" />
         <span class="text-xs">Akun belum di verifikasi</span>
       </div>
-      <div class="bg-blue-600 p-2 rounded-lg"></div>
+      <div class="p-4 rounded-lg grid grid-cols-3 gap-8">
+        <div class="text-center">
+          <img src="/pinjaman.png" alt="" />
+          <span class="font-bold text-gray-600">Pinjaman</span>
+        </div>
+        <div class="text-center">
+          <img src="/pesan-buku.png" alt="" />
+          <span class="font-bold text-gray-600">Pesan Buku</span>
+        </div>
+        <div class="text-center">
+          <img src="/portal.png" alt="" />
+          <span class="font-bold text-gray-600">Portal</span>
+        </div>
+        <div class="text-center">
+          <img src="/tugas-akhir.png" alt="" />
+          <span class="font-bold text-gray-600">Tugas Akhir</span>
+        </div>
+        <div class="text-center">
+          <img src="/forum.png" alt="" />
+          <span class="font-bold text-gray-600">Forum</span>
+        </div>
+        <div class="text-center">
+          <img src="/statistik.png" alt="" />
+          <span class="font-bold text-gray-600">Statistik</span>
+        </div>
+      </div>
     </div>
     <bottom-menu />
     <popup-default :show="showVerified" @closed="showVerified = false">
