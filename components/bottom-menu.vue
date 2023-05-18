@@ -19,7 +19,7 @@
         :class="includeRoute === '/riwayat' ? 'text-blue-500' : 'text-gray-500'"
       >
         <div class="text-center">
-          <Icon name="solar:folder-favourite-bookmark-bold" size="28" />
+          <Icon name="solar:bill-list-bold" size="28" />
           <span class="text-[8px] block w-full">Riwayat</span>
         </div>
       </div>

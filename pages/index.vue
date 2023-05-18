@@ -2,7 +2,7 @@
   <div class="max-w-[600px] min-h-screen mx-auto relative">
     <div class="px-3">
       <div class="mt-2 flex justify-between items-center">
-        <div class="text-sm">
+        <div class="text-lg">
           Halo,
           <span class="text-blue-600">
             {{ auth.data.nama }}
@@ -42,7 +42,7 @@
       </div>
 
       <div
-        v-if="auth.me.is_verified"
+        v-if="auth.me.is_verified_ktp"
         class="flex gap-2 my-2 items-center rounded-lg bg-red-100 text-red-600 p-2"
       >
         <Icon name="clarity:times-circle-solid" size="14" />
@@ -51,6 +51,31 @@
       <div class="bg-blue-600 p-2 rounded-lg"></div>
     </div>
     <bottom-menu />
+    <popup-default :show="showVerified" @closed="showVerified = false">
+      <div class="text-center">
+        <Icon
+          name="solar:notification-lines-remove-bold"
+          size="64"
+          class="text-red-600"
+        />
+        <div class="h-4"></div>
+        <h1 class="font-bold text-gray-600">
+          Yaah !<br />Whatsapp kamu belum di verifikasi!
+        </h1>
+        <button
+          type="button"
+          class="rounded-full mb-2 mt-4 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
+        >
+          Verifikasi Sekarang
+        </button>
+        <button
+          @click.prevent="showVerified = false"
+          class="text-blue-600 mt-2"
+        >
+          Nanti saja
+        </button>
+      </div>
+    </popup-default>
   </div>
 </template>
 
@@ -64,6 +89,11 @@ const router = useRouter();
 const auth = useAuth();
 const search = reactive("");
 const popup = usePopup();
-popup.setPopup("Selamat Datang !", false);
-auth.getMe();
+const showVerified = ref(false);
+
+auth.getMe().then((a) => {
+  if (!a.is_verified_wa) {
+    showVerified.value = true;
+  }
+});
 </script>

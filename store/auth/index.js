@@ -62,6 +62,7 @@ export const useAuth = defineStore('auth', {
 
         if (res.data.success) {
           this.me = res.data.data
+          return res.data.data
         } else {
           this.me = {}
           this.error = res.data.message

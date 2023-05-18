@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="rounded-lg">
     <ClientOnly>
       <StreamBarcodeReader
         @decode="onDecode"
         @loaded="onLoaded"
-        class="min-h-screen min-w-screen"
+        class="rounded-lg w-screen"
       ></StreamBarcodeReader>
     </ClientOnly>
   </div>

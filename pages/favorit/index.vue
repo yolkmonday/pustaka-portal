@@ -1,9 +1,12 @@
 <template>
   <div class="max-w-[600px] min-h-screen mx-auto relative">
     <div
-      class="px-3 pt-2 font-bold text-lg flex items-center gap-1 text-red-500"
+      class="px-3 border-b justify-between pt-2 font-bold pb-2 text-lg flex items-center gap-1 text-gray-600"
     >
-      <Icon name="solar:chat-round-like-bold" size="28" />Favorit
+      <div>Favorit</div>
+      <div>
+        <Icon name="solar:chat-round-like-bold" size="23" />
+      </div>
     </div>
     <div
       class="h-screen flex items-center justify-center"
