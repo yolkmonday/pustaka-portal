@@ -7,11 +7,11 @@
       <Icon name="ic:round-arrow-back" size="24" />
     </NuxtLink>
 
-    <div>
+    <div class="min-h-screen">
       <scan-code />
     </div>
 
-    <div class="absolute bottom-4 left-0 w-full">
+    <div class="absolute bottom-0 left-0 w-full">
       <div
         v-if="isSiklusmode === 'barcode'"
         class="rounded-full p-3 text-white border border-white w-1/2 mx-auto mb-4"
@@ -67,9 +67,9 @@ siklus.checkSiklus().then((x) => {
   console.log(x);
   if (!x.success) {
     showPop.value = true;
-    isSiklues.value = false;
+    isSiklus.value = false;
   } else {
-    isSiklues.value = true;
+    isSiklus.value = true;
   }
 });
 </script>
