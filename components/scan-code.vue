@@ -4,7 +4,7 @@
       <StreamBarcodeReader
         @decode="onDecode"
         @loaded="onLoaded"
-        class="rounded-lg w-screen"
+        class="rounded-lg w-screen h-screen"
       ></StreamBarcodeReader>
     </ClientOnly>
   </div>
