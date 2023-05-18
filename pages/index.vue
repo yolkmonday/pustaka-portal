@@ -48,27 +48,31 @@
         <span class="text-xs">Akun belum di verifikasi</span>
       </div>
       <div class="p-4 rounded-lg grid grid-cols-3 gap-8">
-        <div class="text-center">
+        <div class="text-center" @click.prevent="router.push('/scan')">
           <img src="/pinjaman.png" alt="" />
-          <span class="font-bold text-gray-600">Pinjaman</span>
+          <span class="font-bold text-gray-600">Peminjaman</span>
         </div>
         <div class="text-center">
-          <img src="/pesan-buku.png" alt="" />
+          <img
+            src="/pesan-buku.png"
+            alt=""
+            @click.prevent="router.push('/search')"
+          />
           <span class="font-bold text-gray-600">Pesan Buku</span>
         </div>
-        <div class="text-center">
+        <div class="text-center" @click.prevent="router.push('/search')">
           <img src="/portal.png" alt="" />
           <span class="font-bold text-gray-600">Portal</span>
         </div>
-        <div class="text-center">
+        <div class="text-center" @click.prevent="router.push('/tugas-akhir')">
           <img src="/tugas-akhir.png" alt="" />
           <span class="font-bold text-gray-600">Tugas Akhir</span>
         </div>
-        <div class="text-center">
+        <div class="text-center" @click.prevent="router.push('/forum')">
           <img src="/forum.png" alt="" />
           <span class="font-bold text-gray-600">Forum</span>
         </div>
-        <div class="text-center">
+        <div class="text-center" @click.prevent="router.push('/statistik')">
           <img src="/statistik.png" alt="" />
           <span class="font-bold text-gray-600">Statistik</span>
         </div>
