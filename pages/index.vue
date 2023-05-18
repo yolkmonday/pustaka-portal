@@ -62,12 +62,12 @@
         <h1 class="font-bold text-gray-600">
           Yaah !<br />Whatsapp kamu belum di verifikasi!
         </h1>
-        <button
-          type="button"
-          class="rounded-full mb-2 mt-4 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
+        <NuxtLink
+          to="/verifikasi/wa"
+          class="rounded-full block mb-2 mt-4 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
         >
           Verifikasi Sekarang
-        </button>
+        </NuxtLink>
         <button
           @click.prevent="showVerified = false"
           class="text-blue-600 mt-2"
