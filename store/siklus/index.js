@@ -25,12 +25,7 @@ export const useSiklus = defineStore('siklus', {
                 this.loading = true
                 const res = await axiosGet(`/v1/siklus/check`)
                 this.loading = false
-                if (res.data.success) {
-                    this.data = res.data.data
-                } else {
-                    this.data = []
-                    this.error = res.data.message
-                }
+                return res.data
             } catch (error) {
                 this.loading = false
                 this.error = error

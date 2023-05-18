@@ -13,7 +13,7 @@
 
     <div class="absolute bottom-4 left-0 w-full">
       <div
-        v-if="mode === 'barcode'"
+        v-if="isSiklusmode === 'barcode'"
         class="rounded-full p-3 text-white border border-white w-1/2 mx-auto mb-4"
       >
         Input Barcode Manual
@@ -26,16 +26,31 @@
           <icon name="ri:qr-scan-2-fill" size="48" />
           <span class="block text-xs"> Scan QrCode </span>
         </div>
-        <div @click.prevent="mode = 'barcode'" class="text-center">
+        <div
+          @click.prevent="isSiklus ? (mode = 'barcode') : (showPop = true)"
+          class="text-center"
+        >
           <icon name="ri:qr-scan-line" size="48" />
           <span class="block text-xs"> Scan Barcode </span>
         </div>
       </div>
     </div>
 
-    <div>
-      {{ siklus }}
-    </div>
+    <popup-default :show="showPop" @closed="showPop = false">
+      <div class="text-center">
+        <Icon
+          name="solar:notification-lines-remove-bold"
+          size="64"
+          class="text-red-600"
+        />
+        <div class="h-4"></div>
+        <h1 class="font-bold text-gray-600 text-lg">Belum masuk siklus</h1>
+        <p class="p-3 text-sm text-gray-500">
+          Silahkan scan QR siklus<br />
+          untuk proses peminjaman buku !
+        </p>
+      </div>
+    </popup-default>
   </div>
 </template>
 
@@ -46,5 +61,15 @@ definePageMeta({
 });
 const mode = ref("qr");
 const siklus = useSiklus();
-siklus.checkSiklus();
+const showPop = ref(false);
+const isSiklus = ref(false);
+siklus.checkSiklus().then((x) => {
+  console.log(x);
+  if (!x.success) {
+    showPop.value = true;
+    isSiklues.value = false;
+  } else {
+    isSiklues.value = true;
+  }
+});
 </script>
