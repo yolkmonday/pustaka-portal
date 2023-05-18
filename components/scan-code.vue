@@ -15,9 +15,13 @@ import { StreamBarcodeReader } from "vue-barcode-reader";
 
 const onDecode = (val) => {
   if (val.includes("siklus")) {
-    masukSiklus();
+    masukSiklus(val);
   } else {
-    scanBuku();
+    scanBuku(val);
   }
 };
+
+const masukSiklus = (code) => {};
+
+const scanBuku = (code) => {};
 </script>
