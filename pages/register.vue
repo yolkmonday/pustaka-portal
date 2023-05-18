@@ -1,13 +1,39 @@
 <template>
   <div class="max-w-[600px] mx-auto h-screen bg-blue-600 p-3">
-    <div>
-      <img src="/bg.png" alt="" class="w-3/4 mx-auto py-12" />
-    </div>
     <div class="flex">
-      <form class="w-full bg-white p-4 rounded-lg" @submit.prevent="loginAct()">
+      <form
+        class="w-full bg-white p-4 rounded-lg"
+        @submit.prevent="registerAct()"
+      >
         <div class="mb-8">
           <!-- <div class="h-10"></div> -->
-          <h1 class="font-bold text-xl">Masuk</h1>
+          <h1 class="font-bold text-xl">Daftar</h1>
+        </div>
+        <div class="relative mb-4">
+          <input
+            v-model="user.nama"
+            type="text"
+            required
+            class="rounded-lg p-2 outline-none w-full border-2 focus:border-blue-600"
+          />
+          <div
+            class="text-xs absolute top-0 -mt-1 left-2 bg-white px-3 text-blue-600"
+          >
+            Nama
+          </div>
+        </div>
+        <div class="relative mb-4">
+          <input
+            v-model="user.nik"
+            type="number"
+            required
+            class="rounded-lg p-2 outline-none w-full border-2 focus:border-blue-600"
+          />
+          <div
+            class="text-xs absolute top-0 -mt-1 left-2 bg-white px-3 text-blue-600"
+          >
+            NIK
+          </div>
         </div>
         <div class="relative mb-4">
           <input
@@ -24,6 +50,20 @@
         </div>
         <div class="relative mb-4">
           <input
+            v-model="user.nomor_hp"
+            type="text"
+            inputmode="number"
+            required
+            class="rounded-lg p-2 outline-none w-full border-2 focus:border-blue-600"
+          />
+          <div
+            class="text-xs absolute top-0 -mt-1 left-2 bg-white px-3 text-blue-600"
+          >
+            Nomor Whatsapp
+          </div>
+        </div>
+        <div class="relative mb-4">
+          <input
             type="password"
             v-model="user.password"
             required
@@ -35,11 +75,25 @@
             Password
           </div>
         </div>
+        <div class="relative mb-4">
+          <input
+            type="password"
+            v-model="user.confirm_password"
+            required
+            class="rounded-lg p-2 outline-none w-full border-2 focus:border-blue-600"
+          />
+          <div
+            class="text-xs absolute top-0 -mt-1 left-2 bg-white px-3 text-blue-600"
+          >
+            Ulangi Password
+          </div>
+        </div>
 
         <error-span
           v-if="!auth.data.success && auth.data.message"
           :message="auth.data.message"
         />
+
         <error-span v-if="response.error" :message="response.message" />
 
         <div>
@@ -48,13 +102,13 @@
             :class="auth.loading ? 'bg-blue-500' : ''"
             class="rounded-full mb-2 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
           >
-            Masuk
+            Daftar
           </button>
           <div class="w-full text-center mt-4 text-sm">
-            Belum punya akun ?
+            Sudah punya akun ?
 
-            <NuxtLink to="/register" class="underline font-bold text-blue-600"
-              >Daftar Sekarang</NuxtLink
+            <NuxtLink to="/login" class="underline font-bold text-blue-600"
+              >Login Sekarang</NuxtLink
             >
           </div>
         </div>
@@ -71,14 +125,13 @@ import { reactive } from "vue";
 import { useReCaptcha } from "vue-recaptcha-v3";
 const { $toast } = useNuxtApp();
 const auth = useAuth();
-const router = useRouter();
 
 definePageMeta({
   layout: "no-auth",
 });
 
 useHead({
-  title: "Login - Mainlibapp",
+  title: "Register - Mainlibapp",
 });
 
 const recaptchaInstance = useReCaptcha();
@@ -92,8 +145,12 @@ const recaptcha = async () => {
 };
 
 const user = {
+  nama: "",
+  nik: "",
+  nomor_hp: "",
   email: "",
   password: "",
+  confirm_password: "",
 };
 
 const response = reactive({
@@ -102,17 +159,16 @@ const response = reactive({
   message: "",
 });
 
-const loginAct = async () => {
+const registerAct = async () => {
   try {
-    localStorage.removeItem("error");
+    localStorage.removeItem("error_rg");
     response.loading = true;
     response.error = false;
     const token = await recaptcha();
 
     if (token) {
-      const res = await axios.post("/api/login", { ...user, token });
+      const res = await axios.post("/api/register", { ...user, token });
       response.loading = false;
-      console.log(res);
       if (res.data.success) {
         auth.setLogin(true);
         auth.setData(res.data.data);
@@ -121,6 +177,11 @@ const loginAct = async () => {
       } else {
         response.error = true;
         response.message = res.data.message;
+        if (res.data.data) {
+          res.data.data.forEach((x) => {
+            response.message = response.message + "-" + x;
+          });
+        }
       }
     } else {
       response.loading = false;
