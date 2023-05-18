@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-[600px] min-h-screen mx-auto relative">
     <div
-      class="px-3 border-b justify-between pt-2 font-bold pb-2 flex items-center gap-1 text-gray-600"
+      class="px-3 border-b justify-between pt-2 font-bold pb-2 text-lg flex items-center gap-1 text-gray-600"
     >
       <div>Profil</div>
       <div>
