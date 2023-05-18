@@ -13,7 +13,7 @@
 
     <div class="absolute bottom-0 left-0 w-full">
       <div
-        v-if="isSiklusmode === 'barcode'"
+        v-if="mode === 'barcode'"
         class="rounded-full p-3 text-white border border-white w-1/2 mx-auto mb-4"
       >
         Input Barcode Manual
@@ -64,7 +64,6 @@ const siklus = useSiklus();
 const showPop = ref(false);
 const isSiklus = ref(false);
 siklus.checkSiklus().then((x) => {
-  console.log(x);
   if (!x.success) {
     showPop.value = true;
     isSiklus.value = false;
