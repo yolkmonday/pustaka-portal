@@ -29,6 +29,9 @@ export const useCart = defineStore('cart', {
 
                 if (res.data.success) {
                     this.data = res.data.data
+                    this.data.forEach(b => {
+                        b.b = JSON.parse(b.book)
+                    })
                 } else {
                     this.data = []
                     this.error = res.data.message

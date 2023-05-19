@@ -9,7 +9,7 @@
           </span>
         </div>
         <div>
-          <div class="relative">
+          <div class="relative" @click.prevent="router.push('/keranjang')">
             <Icon name="ph:basket" size="26" class="mr-2" />
             <div
               class="w-5 h-5 absolute top-1 right-0 bg-red-500 flex items-center justify-center text-[10px] text-white rounded-full"
