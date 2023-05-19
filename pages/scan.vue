@@ -14,6 +14,7 @@
     <div class="absolute bottom-0 left-0 w-full">
       <div
         v-if="mode === 'barcode'"
+        @click.prevent="showInput = true"
         class="rounded-full p-3 text-white border border-white w-1/2 mx-auto mb-4"
       >
         Input Barcode Manual
@@ -51,18 +52,55 @@
         </p>
       </div>
     </popup-default>
+
+    <popup-default :show="showInput" @closed="showInput = false">
+      <div>
+        <form class="text-center" @submit.prevent="scanBuku()">
+          <icon
+            name="material-symbols:barcode"
+            size="96"
+            class="text-blue-600"
+          />
+          <p>Masukkan Kode Barcode</p>
+          <input
+            type="text"
+            v-model="barcode"
+            required
+            placeholder="Masukkan kode barcode"
+            class="w-full border my-3 p-3 rounded-lg"
+          />
+          <button
+            type="submit"
+            :disabled="loading"
+            class="rounded-full mb-2 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
+          >
+            Cek Buku
+          </button>
+        </form>
+      </div>
+    </popup-default>
+    <loader-full v-if="loading" />
   </div>
 </template>
 
 <script setup>
+import { useBook } from "../store/book";
+import { usePopup } from "../store/popup";
 import { useSiklus } from "../store/siklus";
+
 definePageMeta({
   middleware: "auth",
 });
 const mode = ref("qr");
 const siklus = useSiklus();
+const book = useBook();
+const popup = usePopup();
 const showPop = ref(false);
+const showInput = ref(false);
 const isSiklus = ref(false);
+const loading = ref(false);
+const barcode = ref("");
+
 siklus.checkSiklus().then((x) => {
   if (!x.success) {
     showPop.value = true;
@@ -71,4 +109,18 @@ siklus.checkSiklus().then((x) => {
     isSiklus.value = true;
   }
 });
+
+const scanBuku = () => {
+  loading.value = true;
+  book.byItemCode(barcode.value).then((x) => {
+    if (!x.success) {
+      popup.setPopup(x.message, !x.success);
+    } else {
+      cart.addToCart(x.data.item_code, x.data.biblio_id).then((y) => {
+        loading.value = false;
+        popup.setPopup(y.message, !y.success);
+      });
+    }
+  });
+};
 </script>

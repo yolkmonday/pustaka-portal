@@ -41,7 +41,7 @@ export const useBook = defineStore('book', {
         async byItemCode(item_code) {
             try {
                 this.loading = true
-                const res = await axiosGet(`/search/items?q=${item_code}`)
+                const res = await axiosGet(`/v1/item?q=${item_code}`)
                 this.loading = false
                 return res.data
             } catch (error) {

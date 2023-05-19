@@ -24,14 +24,11 @@ export const useCart = defineStore('cart', {
         async getData() {
             try {
                 this.loading = true
-                const res = await axiosGet(`/v1/wishlist`)
+                const res = await axiosGet(`/v1/cart`)
                 this.loading = false
 
                 if (res.data.success) {
                     this.data = res.data.data.data
-                    this.data.forEach(b => {
-                        b.book = JSON.parse(b.data)
-                    })
                     this.lastId = res.data.data.last_id
                 } else {
                     this.data = []
@@ -45,7 +42,7 @@ export const useCart = defineStore('cart', {
         async addToCart(item_code, biblio_id) {
             try {
                 this.loading = true
-                const res = await axiosGet(`/v1/cart`, {
+                const res = await axiosPost(`/v1/cart`, {
                     "biblio_id": biblio_id,
                     "item_code": item_code
                 })

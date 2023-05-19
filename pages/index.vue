@@ -110,11 +110,14 @@
 <script setup>
 import { useAuth } from "@/store/auth";
 import { usePopup } from "@/store/popup";
+import { useCart } from "@/store/cart";
 definePageMeta({
   middleware: "auth",
 });
 const router = useRouter();
 const auth = useAuth();
+const cart = useCart();
+
 const search = reactive("");
 const popup = usePopup();
 const showVerified = ref(false);
@@ -124,4 +127,6 @@ auth.getMe().then((a) => {
     showVerified.value = true;
   }
 });
+
+cart.getData();
 </script>
