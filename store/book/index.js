@@ -38,6 +38,17 @@ export const useBook = defineStore('book', {
                 this.error = error
             }
         },
+        async byItemCode(item_code) {
+            try {
+                this.loading = true
+                const res = await axiosGet(`/search/items?q=${item_code}`)
+                this.loading = false
+                return res.data
+            } catch (error) {
+                this.loading = false
+                this.error = error
+            }
+        },
         bookDetail(data) {
             this.detail = data
         },
