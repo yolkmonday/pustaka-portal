@@ -85,6 +85,7 @@
 
 <script setup>
 import { useBook } from "../store/book";
+import { useCart } from "../store/cart";
 import { usePopup } from "../store/popup";
 import { useSiklus } from "../store/siklus";
 
@@ -95,6 +96,7 @@ const mode = ref("qr");
 const siklus = useSiklus();
 const book = useBook();
 const popup = usePopup();
+const cart = useCart();
 const showPop = ref(false);
 const showInput = ref(false);
 const isSiklus = ref(false);
@@ -113,7 +115,11 @@ siklus.checkSiklus().then((x) => {
 const scanBuku = () => {
   loading.value = true;
   book.byItemCode(barcode.value).then((x) => {
+    showInput.value = false;
     if (!x.success) {
+      console.log("tidak sukses");
+      loading.value = false;
+
       popup.setPopup(x.message, !x.success);
     } else {
       cart.addToCart(x.data.item_code, x.data.biblio_id).then((y) => {

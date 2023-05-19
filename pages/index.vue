@@ -14,11 +14,12 @@
             <div
               class="w-5 h-5 absolute top-1 right-0 bg-red-500 flex items-center justify-center text-[10px] text-white rounded-full"
             >
-              0
+              {{ cart.data.length }}
             </div>
           </div>
         </div>
       </div>
+
       <div class="py-2">
         <form
           class="w-full flex gap-2"

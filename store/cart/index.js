@@ -28,8 +28,7 @@ export const useCart = defineStore('cart', {
                 this.loading = false
 
                 if (res.data.success) {
-                    this.data = res.data.data.data
-                    this.lastId = res.data.data.last_id
+                    this.data = res.data.data
                 } else {
                     this.data = []
                     this.error = res.data.message
