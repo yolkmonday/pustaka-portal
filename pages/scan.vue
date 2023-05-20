@@ -8,8 +8,8 @@
     </NuxtLink>
 
     <div class="min-h-screen">
-      <!-- <scan-code /> -->
-      <scan-qr />
+      <scan-code />
+      <!-- <scan-qr /> -->
     </div>
 
     <div class="absolute bottom-0 left-0 w-full">
