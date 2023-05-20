@@ -8,7 +8,8 @@
     </NuxtLink>
 
     <div class="min-h-screen">
-      <scan-code />
+      <!-- <scan-code /> -->
+      <scan-qr />
     </div>
 
     <div class="absolute bottom-0 left-0 w-full">
@@ -119,7 +120,6 @@ const scanBuku = () => {
     if (!x.success) {
       console.log("tidak sukses");
       loading.value = false;
-
       popup.setPopup(x.message, !x.success);
     } else {
       cart.addToCart(x.data.item_code, x.data.biblio_id).then((y) => {
