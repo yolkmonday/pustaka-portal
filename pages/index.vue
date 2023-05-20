@@ -124,7 +124,7 @@ const popup = usePopup();
 const showVerified = ref(false);
 
 auth.getMe().then((a) => {
-  if (!a.is_verified_wa) {
+  if (a && !a.is_verified_wa) {
     showVerified.value = true;
   }
 });

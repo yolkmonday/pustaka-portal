@@ -75,13 +75,23 @@
         </button>
       </div>
     </div>
-    <div class="fixed bottom-3 w-full left-0 p-3">
+    <div v-if="cart.data.length" class="fixed bottom-3 w-full left-0 p-3">
       <button
         type="submit"
         class="rounded-full mb-2 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
       >
         <icon name="ic:twotone-shopping-cart-checkout" size="24" />
         Selesaikan Peminjaman
+      </button>
+    </div>
+    <div v-if="!cart.data.length" class="fixed bottom-3 w-full left-0 p-3">
+      <button
+        type="submit"
+        @click.prevent="router.push('/scan')"
+        class="rounded-full mb-2 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
+      >
+        <icon name="solar:cart-plus-bold" size="24" />
+        Tambah buku ke keranjang
       </button>
     </div>
   </div>
@@ -94,6 +104,7 @@ definePageMeta({
   middleware: "auth",
 });
 
+const router = useRouter();
 const cart = useCart();
 cart.getData();
 </script>
