@@ -13,9 +13,10 @@ const data = ref("");
 const onDecode = (val) => {
   console.log(val);
   alert(val);
+  data.value = val;
 };
-const logErrors = async (val) => {
-  console.log(val);
-};
+// const logErrors = async (val) => {
+//   console.log(val);
+// };
 </script>
 
