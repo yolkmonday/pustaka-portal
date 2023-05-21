@@ -104,7 +104,9 @@
               </div>
               <div class="text-sm flex items-center gap-1">
                 <icon name="solar:gps-bold" class="text-blue-600" />
-                {{ useLocation(it.location_id) }}
+                <span class="text-xs">
+                  {{ useLocation(it.location_id) }}
+                </span>
               </div>
 
               <div v-if="it.loan_data" class="text-[10px] mt-1 text-gray-500">
