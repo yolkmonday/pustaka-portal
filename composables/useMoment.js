@@ -79,8 +79,18 @@ const useMoment = (value) => {
 const useMomentDate = (value) => {
   return moment(value).format('DD-MMM-YYYY HH:mm:ss')
 }
+
 const useMomentUnix = (value) => {
   return moment.unix(value).format('DD-MMM-YYYY HH:mm:ss')
 }
 
-export { useMoment, useMomentDate, useMomentUnix } 
+const useMomentHari = (value) => {
+  return moment(value).format('dddd, DD MMM YYYY')
+}
+
+export {
+  useMoment,
+  useMomentDate,
+  useMomentUnix,
+  useMomentHari
+}

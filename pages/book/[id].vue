@@ -68,22 +68,55 @@
           </div>
         </div>
 
-        <div class="mb-2">
-          <span class="text-gray-500 text-xs">Eksemplar</span>
-
+        <div class="mb-2" v-if="!loadingItem">
+          <span class="text-gray-500 text-xs">Eksemplar Buku</span>
           <div class="grid grid-cols-2 gap-3">
             <div
               v-for="(it, i) in bk.items"
               :key="i"
-              class="border-2 rounded-lg p-2"
+              class="border-2 rounded-lg p-2 bg-gray-50 relative"
             >
-              <span class="font-bold"> #{{ it.item_code }} </span>
-              <span class="text-xs block">
+              <div
+                class="absolute top-0 right-0 px-2 py-1 text-[10px] rounded-bl-lg rounded-tr-lg"
+                :class="
+                  it.status === 'tidak tersedia'
+                    ? 'bg-red-100 text-red-600'
+                    : 'bg-green-100 text-green-600'
+                "
+              >
+                {{ it.status }}
+              </div>
+
+              <div class="text-sm flex items-center gap-1">
+                <icon name="solar:bookmark-circle-bold" class="text-blue-600" />
+                <span class="font-bold">
+                  {{ it.item_code }}
+                </span>
+              </div>
+              <div class="text-sm flex items-center gap-1">
+                <icon name="solar:gps-bold" class="text-blue-600" />
                 {{ useLocation(it.location_id) }}
-              </span>
+              </div>
+
+              <div v-if="it.loan_data" class="text-[10px] mt-1 text-gray-500">
+                <div class="mb-1">
+                  Dipinjam Oleh<br />
+                  <span class="font-bold">
+                    {{ it.loan_data.name }}
+                  </span>
+                </div>
+                <span>
+                  Akan dikembalikan pada<br />
+                  <span class="font-bold">
+                    {{ useMomentHari(it.loan_data.loan.return_date) }}
+                  </span>
+                </span>
+              </div>
             </div>
           </div>
         </div>
+
+        <loader v-if="loadingItem" />
       </div>
     </div>
     <loader-full v-if="book.loading" />
@@ -99,7 +132,26 @@ definePageMeta({
 const book = useBook();
 const route = useRoute();
 const bk = ref({});
+const loadingItem = ref(true);
+
 book.bookDetail(route.params.id).then((b) => {
   bk.value = b.data;
+  if (b.data.items.length) {
+    b.data.items.forEach((it, index) => {
+      setTimeout(() => {
+        book.bookCheck(it.item_code).then((cd) => {
+          loadingItem.value = true;
+
+          if (cd.success) {
+            it.status = "tersedia";
+          } else {
+            it.status = "tidak tersedia";
+            it.loan_data = cd.message.data;
+          }
+          loadingItem.value = false;
+        });
+      }, 200 * index);
+    });
+  }
 });
 </script>
