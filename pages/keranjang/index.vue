@@ -77,7 +77,7 @@
     </div>
     <div v-if="cart.data.length" class="fixed bottom-3 w-full left-0 p-3">
       <button
-        type="submit"
+        @click.prevent="checkoutBook()"
         class="rounded-full mb-2 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
       >
         <icon name="ic:twotone-shopping-cart-checkout" size="24" />
@@ -94,11 +94,14 @@
         Tambah buku ke keranjang
       </button>
     </div>
+
+    <loader-full v-if="cart.loadingCheckout" />
   </div>
 </template>
 
 <script setup>
 import { useCart } from "@/store/cart";
+import { usePopup } from "@/store/popup";
 
 definePageMeta({
   middleware: "auth",
@@ -106,5 +109,23 @@ definePageMeta({
 
 const router = useRouter();
 const cart = useCart();
+const popup = usePopup();
 cart.getData();
+
+const checkoutBook = async () => {
+  try {
+    const array_book = [];
+    cart.data.forEach((el) => {
+      array_book.push(el.cart_id);
+    });
+    console.log(array_book);
+    await cart.checkout(array_book).then((res) => {
+      console.log(res);
+      popup.setPopup(res.message, !res.success);
+      if (res.success) {
+        router.push("/riwayat/" + res.data);
+      }
+    });
+  } catch (error) {}
+};
 </script>
