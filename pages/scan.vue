@@ -16,7 +16,7 @@
       <div
         v-if="mode === 'barcode'"
         @click.prevent="showInput = true"
-        class="rounded-full p-3 text-white border border-white w-1/2 mx-auto mb-4"
+        class="rounded-full p-3 text-center text-white border border-white w-1/2 mx-auto mb-4"
       >
         Input Barcode Manual
       </div>

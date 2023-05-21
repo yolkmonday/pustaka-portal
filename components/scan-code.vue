@@ -22,7 +22,7 @@ const popup = usePopup();
 const book = useBook();
 const cart = useCart();
 const onDecode = (val) => {
-  alert(val);
+  // alert(val);
   if (val.includes("siklus")) {
     masukSiklus(val);
   } else {
@@ -34,6 +34,7 @@ const masukSiklus = (code) => {
   const t = code.split(":", 2);
   siklus.masuk(t[1]).then((x) => {
     popup.setPopup(x.message, !x.success);
+    location.reload();
   });
 };
 
