@@ -40,9 +40,15 @@
         </div>
         <div>
           <span
+            v-if="!checkExpired(b.expired_at)"
             :class="b.status === 'pending' ? 'bg-yellow-500' : ''"
             class="text-xs p-1 rounded-md text-white"
             >{{ b.status }}</span
+          >
+          <span
+            v-if="checkExpired(b.expired_at)"
+            class="text-xs p-1 bg-red-500 rounded-md text-white"
+            >Expired</span
           >
         </div>
       </div>
@@ -53,7 +59,7 @@
 
 <script setup>
 import { useOrder } from "@/store/order";
-
+import moment from "moment";
 const order = useOrder();
 const router = useRouter();
 definePageMeta({
@@ -61,4 +67,14 @@ definePageMeta({
 });
 
 order.getData();
+
+const checkExpired = (val) => {
+  const now = moment().unix();
+  const expired = moment(val).unix();
+  if (now > expired) {
+    return true;
+  } else {
+    return false;
+  }
+};
 </script>
