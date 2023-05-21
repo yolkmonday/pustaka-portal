@@ -49,8 +49,16 @@ export const useBook = defineStore('book', {
                 this.error = error
             }
         },
-        bookDetail(data) {
-            this.detail = data
+        async bookDetail(biblio_id) {
+            try {
+                this.loading = true
+                const res = await axiosGet(`/v1/book/${biblio_id}`)
+                this.loading = false
+                return res.data
+            } catch (error) {
+                this.loading = false
+                this.error = error
+            }
         },
         async addToWishlist(wishlist_id, biblio_id, data) {
             try {

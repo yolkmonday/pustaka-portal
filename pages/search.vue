@@ -61,14 +61,32 @@
           :key="i"
           class="border rounded-lg cursor-pointer p-3 flex gap-2 relative"
         >
-          <div @click.prevent="selectedBook = b" class="w-4/12">
+          <div
+            @click.prevent="
+              router.push(
+                payload.c === 'kil'
+                  ? '/kir/' + b.biblio.biblio_id
+                  : '/book/' + b.biblio.biblio_id
+              )
+            "
+            class="w-4/12"
+          >
             <p
               class="h-28 capitalize text-blue-600 rounded-lg w-20 break-all bg-blue-50 text-[7px] flex items-center text-center p-4"
             >
               {{ b.biblio.title.slice(0, 50) }}...
             </p>
           </div>
-          <div @click.prevent="selectedBook = b" class="w-full">
+          <div
+            @click.prevent="
+              router.push(
+                payload.c === 'kil'
+                  ? '/kir/' + b.biblio.biblio_id
+                  : '/book/' + b.biblio.biblio_id
+              )
+            "
+            class="w-full"
+          >
             <div class="flex gap-2">
               <div class="text-[12px] text-gray-500 flex items-center gap-1">
                 <Icon name="solar:user-circle-bold" />
@@ -121,6 +139,8 @@ import { useBook } from "../store/book";
 import _ from "lodash";
 import { usePopup } from "../store/popup";
 const route = useRoute();
+const router = useRouter();
+
 const book = useBook();
 const popup = usePopup();
 const loading = ref(false);
