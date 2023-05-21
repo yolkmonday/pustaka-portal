@@ -5,7 +5,7 @@
     >
       <div>
         <NuxtLink
-          to="/"
+          to="/search"
           class="text-gray-600 flex items-center justify-center gap-2"
         >
           <Icon name="ic:round-arrow-back" size="24" />

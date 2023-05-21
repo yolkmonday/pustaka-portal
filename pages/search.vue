@@ -1,5 +1,21 @@
 <template>
   <div class="max-w-[600px] min-h-screen mx-auto relative">
+    <div
+      class="px-3 border-b justify-between pt-2 font-bold pb-2 text-lg flex items-center gap-1 text-gray-600"
+    >
+      <div>
+        <NuxtLink
+          to="/"
+          class="text-gray-600 flex items-center justify-center gap-2"
+        >
+          <Icon name="ic:round-arrow-back" size="24" />
+          Cari Koleksi
+        </NuxtLink>
+      </div>
+      <div>
+        <Icon name="ph:basket" size="23" />
+      </div>
+    </div>
     <div class="px-3">
       <div class="py-2">
         <form
@@ -130,7 +146,7 @@
     />
     <div class="h-20"></div>
     <loader-full v-if="book.loadingWishlist" />
-    <bottom-menu />
+    <!-- <bottom-menu /> -->
   </div>
 </template>
 
