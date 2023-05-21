@@ -50,33 +50,45 @@
       </div>
       <div class="p-4 rounded-lg grid grid-cols-3 gap-8">
         <div class="text-center" @click.prevent="router.push('/scan')">
-          <img class="h-20" src="/pinjaman.png" alt="" />
-          <span class="font-bold text-gray-600 text-xs">Peminjaman</span>
+          <img class="h-20 mx-auto mb-1" src="/pinjaman.png" alt="" />
+          <div class="w-full text-center font-bold text-gray-600 text-xs">
+            Peminjaman
+          </div>
         </div>
         <div class="text-center">
           <img
-            class="h-20"
+            class="h-20 mx-auto mb-1"
             src="/pesan-buku.png"
             alt=""
             @click.prevent="router.push('/search')"
           />
-          <span class="font-bold text-gray-600 text-xs">Pesan Buku</span>
+          <div class="w-full text-center font-bold text-gray-600 text-xs">
+            Pesan Buku
+          </div>
         </div>
         <div class="text-center" @click.prevent="router.push('/search')">
-          <img class="h-20" src="/portal.png" alt="" />
-          <span class="font-bold text-gray-600 text-xs">Portal</span>
+          <img class="h-20 mx-auto mb-1" src="/portal.png" alt="" />
+          <div class="w-full text-center font-bold text-gray-600 text-xs">
+            Portal
+          </div>
         </div>
         <div class="text-center" @click.prevent="router.push('/tugas-akhir')">
-          <img class="h-20" src="/tugas-akhir.png" alt="" />
-          <span class="font-bold text-gray-600 text-xs">Tugas Akhir</span>
+          <img class="h-20 mx-auto mb-1" src="/tugas-akhir.png" alt="" />
+          <div class="w-full text-center font-bold text-gray-600 text-xs">
+            Tugas Akhir
+          </div>
         </div>
         <div class="text-center" @click.prevent="router.push('/forum')">
-          <img class="h-20" src="/forum.png" alt="" />
-          <span class="font-bold text-gray-600 text-xs">Forum</span>
+          <img class="h-20 mx-auto mb-1" src="/forum.png" alt="" />
+          <div class="w-full text-center font-bold text-gray-600 text-xs">
+            Forum
+          </div>
         </div>
         <div class="text-center" @click.prevent="router.push('/statistik')">
-          <img class="h-20" src="/statistik.png" alt="" />
-          <span class="font-bold text-gray-600 text-xs">Statistik</span>
+          <img class="h-20 mx-auto mb-1" src="/statistik.png" alt="" />
+          <div class="w-full text-center font-bold text-gray-600 text-xs">
+            Statistik
+          </div>
         </div>
       </div>
     </div>
@@ -89,9 +101,9 @@
           class="text-red-600"
         />
         <div class="h-4"></div>
-        <h1 class="font-bold text-gray-600 text-xs">
+        <div class="w-full text-center font-bold text-gray-600 text-xs">
           Yaah !<br />Whatsapp kamu belum di verifikasi!
-        </h1>
+        </div>
         <NuxtLink
           to="/verifikasi/wa"
           class="rounded-full block mb-2 mt-4 border border-blue-600 bg-blue-600 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
