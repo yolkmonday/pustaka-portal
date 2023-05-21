@@ -16,7 +16,6 @@
     "tailwindcss": "^3.2.7"
   },
   "dependencies": {
-    "@chenfengyuan/vue-qrcode": "^2.0.0",
     "@pinia/nuxt": "^0.4.7",
     "@vuepic/vue-datepicker": "^4.3.0",
     "@vueup/vue-quill": "^1.1.1",
@@ -29,12 +28,12 @@
     "moment": "^2.29.4",
     "nuxt3-select2": "^0.1.29",
     "qrcode-reader-vue3": "^3.1.2",
-    "qrcode-vue3": "^1.5.40",
     "vue-barcode-reader": "^1.0.3",
     "vue-cal": "^4.8.1",
     "vue-final-modal": "^4.2.0",
     "vue-json-excel3": "^0.0.6",
     "vue-json-pretty": "^2.2.4",
+    "vue-qrcode-component": "^2.1.1",
     "vue-recaptcha-v3": "^2.0.1",
     "vue-toastification": "^2.0.0-rc.5",
     "vue3-carousel": "^0.3.1",

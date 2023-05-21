@@ -35,19 +35,26 @@
       v-if="!order.loading && order.detail"
       class="grid grid-cols-1 gap-3 p-3"
     >
-      <!--  -->
+      <!-- <qr-code text="Text to encode"></qr-code> -->
       <!-- {{ order.detail }} -->
-      <div class="rounded-lg bg-red-100 text-red-500 p-3 text-center">
-        Peminjaman akan kadaluarsa dalam<br />
-        <strong class="text-xl">
-          {{ useMomentNow(order.detail.expired_at) }}
-        </strong>
-        <br />
+      <div v-if="!isExpired">
+        <div class="rounded-t-lg bg-red-100 text-red-500 p-3 text-center">
+          Peminjaman akan kadaluarsa dalam<br />
+          <strong class="text-xl">
+            {{ useMomentNow(order.detail.expired_at) }}
+          </strong>
+          <br />
+        </div>
+        <div
+          class="mb-3 rounded-b-lg bg-orange-100 text-sm text-orange-500 p-3"
+        >
+          Segera menuju tunjukkan QR Code kepeda petugas untuk selesaikan
+          peminjaman
+        </div>
       </div>
-      <div class="mb-3 rounded-lg bg-orange-100 text-sm text-orange-500 p-3">
-        Segera menuju tunjukkan QR Code kepeda petugas untuk selesaikan
-        peminjaman
-      </div>
+
+      <div v-if="isExpired">Peminjaman telah kadaluarsa</div>
+
       <div class="mb-3">
         <div class="font-bold flex items-center gap-1">
           <icon name="solar:buildings-2-bold" class="text-blue-600" />
@@ -86,7 +93,7 @@
 
 <script setup>
 import { useOrder } from "@/store/order";
-
+import moment from "moment";
 definePageMeta({
   middleware: "auth",
 });
@@ -98,6 +105,16 @@ const listBook = computed((x) => {
     y.book_render = JSON.parse(y.book);
   });
   return order.detail.order_item;
+});
+
+const isExpired = computed((val) => {
+  const now = moment().unix();
+  const expired = moment(val).unix();
+  if (now > expired) {
+    return true;
+  } else {
+    return false;
+  }
 });
 order.getDetail(route.params.id);
 </script>
