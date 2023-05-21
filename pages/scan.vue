@@ -7,12 +7,12 @@
       <Icon name="ic:round-arrow-back" size="24" />
     </NuxtLink>
 
-    <div class="min-h-screen">
+    <div class="min-h-screen" v-if="!siklus.loading">
       <scan-code />
       <!-- <scan-qr /> -->
     </div>
 
-    <div class="absolute bottom-0 left-0 w-full">
+    <div class="absolute bottom-0 left-0 w-full" v-if="!siklus.loading">
       <div
         v-if="mode === 'barcode'"
         @click.prevent="showInput = true"
@@ -80,7 +80,7 @@
         </form>
       </div>
     </popup-default>
-    <loader-full v-if="loading" />
+    <loader-full v-if="loading || siklus.loading" />
   </div>
 </template>
 
