@@ -16,10 +16,17 @@
         <Icon name="ph:basket" size="23" />
       </div>
     </div>
-
-    <div class="px-3 mt-20">
+    <div class="px-3 mt-3">
       <div v-if="!book.loading">
         <!-- {{ bk }} -->
+        <div>
+          <p
+            class="h-40 capitalize text-blue-600 rounded-lg w-28 mx-auto break-all bg-blue-50 text-[10px] flex items-center text-center p-4"
+          >
+            {{ bk.title.slice(0, 50) }}...
+          </p>
+        </div>
+
         <div class="mb-2">
           <span class="text-gray-500 text-xs">Judul</span>
           <h1 class="font-bold text-lg">
@@ -69,7 +76,9 @@
         </div>
 
         <div class="mb-2" v-if="!loadingItem">
-          <span class="text-gray-500 text-xs">Eksemplar Buku</span>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-500 text-xs">Eksemplar Buku</span>
+          </div>
           <div class="grid grid-cols-2 gap-3">
             <div
               v-for="(it, i) in bk.items"
@@ -119,6 +128,24 @@
         <loader v-if="loadingItem" />
       </div>
     </div>
+    <div class="h-40"></div>
+    <div class="fixed bottom-0 left-0 w-full bg-white p-3 border-t">
+      <div class="flex gap-2">
+        <button
+          type="submit"
+          class="rounded-full mb-2 border border-red-500 text-red-500 w-14 py-3 text-sm transform active:scale-95 transition-transform"
+        >
+          <Icon name="mdi:cards-heart" />
+        </button>
+        <button
+          type="submit"
+          class="rounded-full mb-2 border border-blue-500 bg-blue-500 text-white w-full py-3 text-sm transform active:scale-95 transition-transform"
+        >
+          <Icon name="solar:cart-plus-bold" />
+          Tambah Ke Keranjang
+        </button>
+      </div>
+    </div>
     <loader-full v-if="book.loading" />
   </div>
 </template>
@@ -126,6 +153,7 @@
 
 <script setup>
 import { useBook } from "@/store/book";
+import _ from "lodash";
 definePageMeta({
   middleware: "auth",
 });
@@ -141,7 +169,6 @@ book.bookDetail(route.params.id).then((b) => {
       setTimeout(() => {
         book.bookCheck(it.item_code).then((cd) => {
           loadingItem.value = true;
-
           if (cd.success) {
             it.status = "tersedia";
           } else {
