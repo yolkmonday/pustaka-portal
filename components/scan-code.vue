@@ -34,7 +34,9 @@ const masukSiklus = (code) => {
   const t = code.split(":", 2);
   siklus.masuk(t[1]).then((x) => {
     popup.setPopup(x.message, !x.success);
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   });
 };
 
