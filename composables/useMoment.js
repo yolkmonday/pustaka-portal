@@ -87,10 +87,14 @@ const useMomentUnix = (value) => {
 const useMomentHari = (value) => {
   return moment(value).format('dddd, DD MMM YYYY')
 }
+const useMomentNow = (value) => {
+  return moment(value).fromNow()
+}
 
 export {
   useMoment,
   useMomentDate,
   useMomentUnix,
-  useMomentHari
+  useMomentHari,
+  useMomentNow
 }

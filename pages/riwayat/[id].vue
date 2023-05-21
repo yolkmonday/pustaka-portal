@@ -37,6 +37,17 @@
     >
       <!--  -->
       <!-- {{ order.detail }} -->
+      <div class="rounded-lg bg-red-100 text-red-500 p-3 text-center">
+        Peminjaman akan kadaluarsa dalam<br />
+        <strong class="text-xl">
+          {{ useMomentNow(order.detail.expired_at) }}
+        </strong>
+        <br />
+      </div>
+      <div class="mb-3 rounded-lg bg-orange-100 text-sm text-orange-500 p-3">
+        Segera menuju tunjukkan QR Code kepeda petugas untuk selesaikan
+        peminjaman
+      </div>
       <div class="mb-3">
         <div class="font-bold flex items-center gap-1">
           <icon name="solar:buildings-2-bold" class="text-blue-600" />
