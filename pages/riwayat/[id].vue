@@ -35,8 +35,12 @@
       v-if="!order.loading && order.detail"
       class="grid grid-cols-1 gap-3 p-3"
     >
-      <!-- <qr-code text="Text to encode"></qr-code> -->
-      <!-- {{ order.detail }} -->
+      <img
+        v-if="!isExpired"
+        :src="order.detail.qr"
+        class="w-3/4 mx-auto py-5"
+        alt=""
+      />
       <div v-if="!isExpired">
         <div class="rounded-t-lg bg-red-100 text-red-500 p-3 text-center">
           Peminjaman akan kadaluarsa dalam<br />
@@ -53,7 +57,9 @@
         </div>
       </div>
 
-      <div v-if="isExpired">Peminjaman telah kadaluarsa</div>
+      <div v-if="isExpired" class="p-3 bg-red-100 text-red-600 rounded-lg">
+        Peminjaman telah kadaluarsa
+      </div>
 
       <div class="mb-3">
         <div class="font-bold flex items-center gap-1">
@@ -87,12 +93,14 @@
       </div>
     </div>
 
-    <loader-full v-if="order.loading" />
+    <!-- <loader-full v-if="order.loading" /> -->
   </div>
 </template>
 
 <script setup>
 import { useOrder } from "@/store/order";
+// import QRCodeVue3 from "qrcode-vue3";
+
 import moment from "moment";
 definePageMeta({
   middleware: "auth",
@@ -107,9 +115,10 @@ const listBook = computed((x) => {
   return order.detail.order_item;
 });
 
-const isExpired = computed((val) => {
+const isExpired = computed(() => {
   const now = moment().unix();
-  const expired = moment(val).unix();
+  const expired = moment(order.detail.expired_at).unix();
+
   if (now > expired) {
     return true;
   } else {

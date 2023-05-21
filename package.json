@@ -28,6 +28,7 @@
     "moment": "^2.29.4",
     "nuxt3-select2": "^0.1.29",
     "qrcode-reader-vue3": "^3.1.2",
+    "qrcode-vue3": "^1.5.40",
     "vue-barcode-reader": "^1.0.3",
     "vue-cal": "^4.8.1",
     "vue-final-modal": "^4.2.0",

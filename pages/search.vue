@@ -12,7 +12,7 @@
           Cari Koleksi
         </NuxtLink>
       </div>
-      <div>
+      <div @click.prevent="router.push('/keranjang')">
         <Icon name="ph:basket" size="23" />
       </div>
     </div>
