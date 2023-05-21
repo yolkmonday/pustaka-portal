@@ -50,32 +50,33 @@
       </div>
       <div class="p-4 rounded-lg grid grid-cols-3 gap-8">
         <div class="text-center" @click.prevent="router.push('/scan')">
-          <img src="/pinjaman.png" alt="" />
-          <span class="font-bold text-gray-600">Peminjaman</span>
+          <img class="h-20" src="/pinjaman.png" alt="" />
+          <span class="font-bold text-gray-600 text-xs">Peminjaman</span>
         </div>
         <div class="text-center">
           <img
+            class="h-20"
             src="/pesan-buku.png"
             alt=""
             @click.prevent="router.push('/search')"
           />
-          <span class="font-bold text-gray-600">Pesan Buku</span>
+          <span class="font-bold text-gray-600 text-xs">Pesan Buku</span>
         </div>
         <div class="text-center" @click.prevent="router.push('/search')">
-          <img src="/portal.png" alt="" />
-          <span class="font-bold text-gray-600">Portal</span>
+          <img class="h-20" src="/portal.png" alt="" />
+          <span class="font-bold text-gray-600 text-xs">Portal</span>
         </div>
         <div class="text-center" @click.prevent="router.push('/tugas-akhir')">
-          <img src="/tugas-akhir.png" alt="" />
-          <span class="font-bold text-gray-600">Tugas Akhir</span>
+          <img class="h-20" src="/tugas-akhir.png" alt="" />
+          <span class="font-bold text-gray-600 text-xs">Tugas Akhir</span>
         </div>
         <div class="text-center" @click.prevent="router.push('/forum')">
-          <img src="/forum.png" alt="" />
-          <span class="font-bold text-gray-600">Forum</span>
+          <img class="h-20" src="/forum.png" alt="" />
+          <span class="font-bold text-gray-600 text-xs">Forum</span>
         </div>
         <div class="text-center" @click.prevent="router.push('/statistik')">
-          <img src="/statistik.png" alt="" />
-          <span class="font-bold text-gray-600">Statistik</span>
+          <img class="h-20" src="/statistik.png" alt="" />
+          <span class="font-bold text-gray-600 text-xs">Statistik</span>
         </div>
       </div>
     </div>
@@ -88,7 +89,7 @@
           class="text-red-600"
         />
         <div class="h-4"></div>
-        <h1 class="font-bold text-gray-600">
+        <h1 class="font-bold text-gray-600 text-xs">
           Yaah !<br />Whatsapp kamu belum di verifikasi!
         </h1>
         <NuxtLink
