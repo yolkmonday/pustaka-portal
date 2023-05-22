@@ -91,6 +91,30 @@
           </div>
         </div>
       </div>
+
+      <div class="py-2 border-t">
+        <h1 class="font-bold flex items-center gap-1 text-lg mb-1">
+          <icon name="solar:info-square-bold" class="text-blue-600" />
+          Informasi
+        </h1>
+        <slider />
+      </div>
+
+      <div class="py-2 border-t">
+        <h1 class="font-bold flex items-center gap-1 text-lg mb-1">
+          <icon name="solar:help-bold" class="text-blue-600" />
+          Panduan
+        </h1>
+        <div class="grid grid-cols-1 p-1">
+          <div>
+            <img src="/ill.png" class="rounded-lg" alt="" />
+            <div class="font-bold mt-2">Tutorial Scan Buku</div>
+            <p class="text-xs text-gray-500">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit...
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <bottom-menu />
     <popup-default :show="showVerified" @closed="showVerified = false">

@@ -11,7 +11,7 @@ export const useBanner = defineStore('banner', {
     // a function that returns a fresh state
     state: () => ({
         data: [{
-            img: ''
+            img: 'https://www.perpusnas.go.id/_next/image?url=https%3A%2F%2Fbackend.perpusnas.go.id%2Fuploads%2Fbanner%2F1683259481_26c46f1bc76af6172e73.png&w=1920&q=75'
         }],
         lastId: 0,
         loading: false,

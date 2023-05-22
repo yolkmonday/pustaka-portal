@@ -2,7 +2,7 @@
   <Carousel>
     <Slide v-for="(s, i) in banner.data" :key="i">
       <div class="carousel__item">
-        <img :src="s.img" alt="" class="rounded-lg" />
+        <img :src="s.img" alt="" class="rounded-lg w-full" />
       </div>
     </Slide>
     <template #addons>
@@ -13,7 +13,6 @@
 
 <script setup>
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
-
 import "vue3-carousel/dist/carousel.css";
 import { useBanner } from "@/store/banner";
 const banner = useBanner();
