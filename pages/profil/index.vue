@@ -85,7 +85,7 @@
       </button>
       <p class="text-xs text-center text-gray-500">Versi 0.4-beta</p>
     </div>
-
+    <div class="h-20"></div>
     <bottom-menu />
   </div>
 </template>

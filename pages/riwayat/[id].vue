@@ -64,6 +64,16 @@
       <div class="mb-3">
         <div class="font-bold flex items-center gap-1">
           <icon name="solar:buildings-2-bold" class="text-blue-600" />
+          Order ID
+        </div>
+        <div class="ml-5">
+          {{ useLocation(listBook[0].book_render.location_id) }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="font-bold flex items-center gap-1">
+          <icon name="solar:buildings-2-bold" class="text-blue-600" />
           Lokasi Peminjaman
         </div>
         <div class="ml-5">
