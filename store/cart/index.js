@@ -56,6 +56,9 @@ export const useCart = defineStore('cart', {
                 this.error = error
             }
         },
+        async deleteCart(cart_id) {
+
+        },
         async checkout(array_book) {
             try {
                 this.loadingCheckout = true
