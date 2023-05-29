@@ -3,7 +3,7 @@
     <vue-bottom-sheet
       ref="x"
       @closed="emit('closed')"
-      :click-to-close="false"
+      :click-to-close="props.clicktoclose"
       max-height="90%"
     >
       <div class="p-3 min-h-[300px]">
@@ -18,6 +18,7 @@ import { VueBottomSheet } from "@webzlodimir/vue-bottom-sheet";
 const x = ref(null);
 const props = defineProps({
   show: Boolean,
+  clicktoclose: Boolean,
 });
 const emit = defineEmits(["closed"]);
 watch(

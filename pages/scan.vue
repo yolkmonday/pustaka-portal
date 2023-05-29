@@ -38,7 +38,11 @@
       </div>
     </div>
 
-    <popup-default :show="showPop" @closed="showPop = false">
+    <popup-default
+      :show="showPop"
+      @closed="showPop = false"
+      :clicktoclose="true"
+    >
       <div class="text-center">
         <Icon
           name="solar:notification-lines-remove-bold"

@@ -2,7 +2,10 @@
   <div class="max-w-[600px] min-h-screen mx-auto relative">
     <div class="px-3">
       <div class="my-4 flex justify-between items-center">
-        <div class="text-lg flex items-center">
+        <div
+          @click.prevent="router.push('/profil')"
+          class="text-lg flex items-center"
+        >
           <Icon name="solar:user-circle-bold" size="24" />
           <span class="text-blue-600 font-bold">
             {{ auth.data.nama }}
@@ -12,6 +15,7 @@
           <div class="relative" @click.prevent="router.push('/keranjang')">
             <Icon name="ph:basket" size="26" class="mr-2" />
             <div
+              v-if="cart.data.length"
               class="w-5 h-5 absolute top-1 right-0 bg-red-500 flex items-center justify-center text-[10px] text-white rounded-full"
             >
               {{ cart.data.length }}
@@ -118,7 +122,11 @@
     </div>
     <div class="h-40"></div>
     <bottom-menu />
-    <popup-default :show="showVerified" @closed="showVerified = false">
+    <popup-default
+      :show="showVerified"
+      @closed="showVerified = false"
+      :clicktoclose="false"
+    >
       <div class="text-center">
         <Icon
           name="solar:notification-lines-remove-bold"

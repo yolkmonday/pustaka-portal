@@ -22,7 +22,7 @@
           <div
             class="text-xs absolute top-0 -mt-1 left-2 bg-white px-3 text-blue-600"
           >
-            Nama
+            Nama (Sesuai KTP)
           </div>
         </div>
         <div class="relative mb-4">
