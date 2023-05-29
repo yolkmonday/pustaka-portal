@@ -4,13 +4,13 @@
       class="px-3 border-b justify-between pt-2 font-bold pb-2 text-lg flex items-center gap-1 text-gray-600"
     >
       <div>
-        <NuxtLink
-          to="/search"
+        <div
+          @click.prevent="router.go(-1)"
           class="text-gray-600 flex items-center justify-center gap-2"
         >
           <Icon name="ic:round-arrow-back" size="24" />
           Detail Buku
-        </NuxtLink>
+        </div>
       </div>
       <div>
         <Icon name="ph:basket" size="23" />
@@ -161,6 +161,8 @@ definePageMeta({
 });
 const book = useBook();
 const route = useRoute();
+const router = useRouter();
+
 const bk = ref({});
 const loadingItem = ref(true);
 

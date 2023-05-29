@@ -47,7 +47,8 @@
               : 'text-gray-400'
           "
           @click.prevent="
-            (payload.c = 'biblio'), book.getData(payload.c, payload.q, 10, 1)
+            (payload.c = 'collection'),
+              book.getData(payload.c, payload.q, 10, 1)
           "
         >
           Buku
@@ -80,7 +81,7 @@
           <div
             @click.prevent="
               router.push(
-                payload.c === 'kil'
+                b.type === 'karya ilmiah'
                   ? '/kir/' + b.biblio.biblio_id
                   : '/book/' + b.biblio.biblio_id
               )
@@ -88,15 +89,23 @@
             class="w-4/12"
           >
             <p
+              v-if="!b.biblio.image"
               class="h-28 capitalize text-blue-600 rounded-lg w-20 break-all bg-blue-50 text-[7px] flex items-center text-center p-4"
             >
               {{ b.biblio.title.slice(0, 50) }}...
             </p>
+            <img
+              v-if="b.biblio.image"
+              onerror="this.onerror=null;this.src='https://static.rsmurniteguh.app/img_assets/not_found.png';"
+              class="h-28 w-20 object-cover rounded-lg"
+              :src="`https://assets.mainlibapp.com/${b.biblio.image}`"
+              alt=""
+            />
           </div>
           <div
             @click.prevent="
               router.push(
-                payload.c === 'kil'
+                b.type === 'karya ilmiah'
                   ? '/kir/' + b.biblio.biblio_id
                   : '/book/' + b.biblio.biblio_id
               )
@@ -104,16 +113,20 @@
             class="w-full"
           >
             <div class="flex gap-2">
-              <div class="text-[12px] text-gray-500 flex items-center gap-1">
-                <Icon name="solar:user-circle-bold" />
-                <span>
-                  {{ b.author.author_name }}
-                </span>
-              </div>
-              <div class="text-[12px] text-gray-500 flex items-center gap-1">
+              <div class="text-[12px] text-gray-500 flex items-center">
                 <Icon name="solar:book-bold" />
-                <span> {{ b.item.length }} Koleksi </span>
+                <span> {{ b.item.length }} </span>
               </div>
+              <div class="text-[12px] text-gray-500 flex items-center gap-1">
+                <Icon name="solar:folder-open-bold" />
+                <span class="capitalize"> {{ b.type }} </span>
+              </div>
+            </div>
+            <div class="text-[12px] text-gray-500 flex items-center gap-1">
+              <Icon name="solar:user-circle-bold" />
+              <span>
+                {{ b.author.author_name }}
+              </span>
             </div>
 
             <p class="font-bold capitalize block mt-1 text-sm">
@@ -164,7 +177,7 @@ definePageMeta({
   middleware: "auth",
 });
 const payload = reactive({
-  c: "",
+  c: "collection",
   q: "",
   limit: 10,
   page: 1,
@@ -172,9 +185,13 @@ const payload = reactive({
 
 const selectedBook = ref({ biblio: {} });
 
-// const changeColl = (val) => {
-//   payload.c = val.target.value;
-// };
+watch(
+  payload,
+  (a, b) => {
+    route.query.q = "Tess";
+  },
+  { deep: true }
+);
 const addWishlist = async (wishlist_id, biblio_id, data) => {
   await book.addToWishlist(wishlist_id, biblio_id, data);
   if (book.response) {
