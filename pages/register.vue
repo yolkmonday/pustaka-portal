@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-[600px] mx-auto h-screen bg-blue-600 p-3">
+  <div class="max-w-[600px] mx-auto min-h-screen bg-blue-600 p-3">
     <div>
       <img src="/bg.png" alt="" class="w-3/4 mx-auto py-12" />
     </div>
