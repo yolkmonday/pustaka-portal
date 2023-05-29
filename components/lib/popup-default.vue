@@ -1,6 +1,11 @@
 <template>
   <ClientOnly>
-    <vue-bottom-sheet ref="x" @closed="emit('closed')" max-height="90%">
+    <vue-bottom-sheet
+      ref="x"
+      @closed="emit('closed')"
+      :click-to-close="false"
+      max-height="90%"
+    >
       <div class="p-3 min-h-[300px]">
         <slot />
       </div>

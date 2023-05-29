@@ -92,6 +92,32 @@
           </div>
         </div>
 
+        <div class="mb-4">
+          <ul class="list-disc">
+            <li
+              v-if="!password.has_minimum_lenth"
+              class="flex text-red-500 text-xs"
+            >
+              - Password harus minimal 8 karakter
+            </li>
+            <li v-if="!password.has_special" class="flex text-red-500 text-xs">
+              - Password harus mengandung karakter spesial
+            </li>
+            <li v-if="!password.has_number" class="flex text-red-500 text-xs">
+              - Password harus mengandung angka
+            </li>
+            <li v-if="!password.has_alpha" class="flex text-red-500 text-xs">
+              - Password harus mengandung huruf
+            </li>
+            <li
+              v-if="user.confirm_password.length > 3 && !isPasswordSame"
+              class="flex text-red-500 text-xs"
+            >
+              - Konfirmasi Password tidak sama
+            </li>
+          </ul>
+        </div>
+
         <error-span
           v-if="!auth.data.success && auth.data.message"
           :message="auth.data.message"
@@ -147,14 +173,46 @@ const recaptcha = async () => {
   return token;
 };
 
-const user = {
+const user = reactive({
   nama: "",
   nik: "",
   nomor_hp: "",
   email: "",
   password: "",
   confirm_password: "",
-};
+});
+
+const isPasswordSame = computed(() => {
+  return user.password === user.confirm_password;
+});
+
+const password = reactive({
+  has_minimum_lenth: false,
+  has_number: false,
+  has_alpha: false,
+  has_special: false,
+});
+
+const isNext = computed(() => {
+  if (
+    password.has_minimum_lenth &&
+    password.has_number &&
+    password.has_alpha &&
+    password.has_special &&
+    isPasswordSame
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+watch(user, (a, b) => {
+  password.has_minimum_lenth = b.password.length > 8;
+  password.has_number = /\d/.test(b.password);
+  password.has_alpha = /[A-Za-z]/.test(b.password);
+  password.has_special = /[!@#\\$%\\^\\&*\\)\\(+=._-]/.test(b.password);
+});
 
 const response = reactive({
   error: false,
@@ -164,31 +222,35 @@ const response = reactive({
 
 const registerAct = async () => {
   try {
-    localStorage.removeItem("error_rg");
-    response.loading = true;
-    response.error = false;
-    const token = await recaptcha();
+    if (isNext.value) {
+      localStorage.removeItem("error_rg");
+      response.loading = true;
+      response.error = false;
+      const token = await recaptcha();
 
-    if (token) {
-      const res = await axios.post("/api/register", { ...user, token });
-      response.loading = false;
-      if (res.data.success) {
-        auth.setLogin(true);
-        auth.setData(res.data.data);
-        auth.setToken(res.data.data.token);
-        window.location = "/";
-      } else {
-        response.error = true;
-        response.message = res.data.message;
-        if (res.data.data) {
-          res.data.data.forEach((x) => {
-            response.message = response.message + "-" + x;
-          });
+      if (token) {
+        const res = await axios.post("/api/register", { ...user, token });
+        response.loading = false;
+        if (res.data.success) {
+          auth.setLogin(true);
+          auth.setData(res.data.data);
+          auth.setToken(res.data.data.token);
+          window.location = "/";
+        } else {
+          response.error = true;
+          response.message = res.data.message;
+          if (res.data.data) {
+            res.data.data.forEach((x) => {
+              response.message = response.message + "-" + x;
+            });
+          }
         }
+      } else {
+        response.loading = false;
+        $toast.error("Gagal mendapatkan token !");
       }
     } else {
-      response.loading = false;
-      $toast.error("Gagal mendapatkan token !");
+      $toast.error("Periksa Password / Konfirmasi Passsword");
     }
   } catch (error) {
     response.loading = false;

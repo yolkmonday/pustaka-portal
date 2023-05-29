@@ -86,8 +86,8 @@ const verif = () => {
     if (x.success) {
       popup.setPopup(x.message, false);
       setTimeout(() => {
-        router.push("/");
-      }, 2000);
+        window.location = "/";
+      }, 1000);
     } else {
       popup.setPopup(x.message, true);
     }

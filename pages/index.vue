@@ -135,12 +135,6 @@
         >
           Verifikasi Sekarang
         </NuxtLink>
-        <button
-          @click.prevent="showVerified = false"
-          class="text-blue-600 mt-2"
-        >
-          Nanti saja
-        </button>
       </div>
     </popup-default>
   </div>
