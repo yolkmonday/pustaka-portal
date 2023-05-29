@@ -38,7 +38,7 @@
           </button>
         </form>
       </div>
-      <div class="grid grid-cols-2 pb-3">
+      <!-- <div class="grid grid-cols-2 pb-3">
         <div
           class="text-xs font-bold text-center py-2 border-b-2"
           :class="
@@ -66,11 +66,13 @@
         >
           Karya Ilmiah
         </div>
-      </div>
+      </div> -->
 
       <div v-if="book.loading">
         <loader />
       </div>
+
+      <!-- {{ book.data.totalHits }} -->
 
       <div v-if="!book.loading" class="grid grid-cols-1 gap-3">
         <div
@@ -188,7 +190,17 @@ const selectedBook = ref({ biblio: {} });
 watch(
   payload,
   (a, b) => {
-    route.query.q = "Tess";
+    if (payload.q) {
+      route.query.q = payload.q;
+    }
+  },
+  { deep: true }
+);
+
+watch(
+  route,
+  (a, b) => {
+    console.log(a);
   },
   { deep: true }
 );
