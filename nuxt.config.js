@@ -5,12 +5,14 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
       meta: [{
-        name: 'google',
-        content: 'notranslate'
-      }, {
-        name: 'format-detection',
-        content: 'telephone=no'
-      }, ],
+          name: 'google',
+          content: 'notranslate'
+        }, {
+          name: 'format-detection',
+          content: 'telephone=no'
+        },
+
+      ],
       link: [{
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap"
