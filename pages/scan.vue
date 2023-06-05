@@ -128,6 +128,7 @@ const scanBuku = () => {
     } else {
       cart.addToCart(x.data.item_code, x.data.biblio_id).then((y) => {
         loading.value = false;
+        router.push("/keranjang");
         popup.setPopup(y.message, !y.success);
       });
     }
