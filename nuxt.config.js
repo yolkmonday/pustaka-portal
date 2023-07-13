@@ -49,7 +49,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@pinia/nuxt', 'nuxt-icon'],
+  modules: ['@pinia/nuxt', 'nuxt-icon','@vite-pwa/nuxt'],
 
   runtimeConfig: {
     public: {
@@ -79,12 +79,50 @@ export default defineNuxtConfig({
       'composables/**'
     ]
   },
-  // pwa: {
-  //   // workbox: {
-  //   //   enabled: true
-  //   // },
-  //   // icon: {
-  //   //   /* icon options */
-  //   // }
-  // }
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Main Lib',
+      short_name: 'Main Lib',
+      theme_color: '#ffffff',
+      icons: [
+       {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+      ],
+    },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+    client: {
+      installPrompt: true,
+      // you don't need to include this: only for testing purposes
+      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+      periodicSyncForUpdates: 20,
+    },
+    devOptions: {
+      enabled: true,
+      suppressWarnings: true,
+      navigateFallbackAllowlist: [/^\/$/],
+      type: 'module',
+    },
+  },
 })
